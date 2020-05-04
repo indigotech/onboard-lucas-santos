@@ -1,4 +1,9 @@
 # Onboaring Lucas Leme Santos
 
-- Github Setup
-    - Step 1/3 Setup
+- Project's Name: Leme's Onboarding
+
+- Project's Description: An learning project
+
+- Environment and tools *
+
+- Steps to run and debug *
