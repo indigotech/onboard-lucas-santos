@@ -7,7 +7,7 @@ export class Welcome extends React.Component{
     }
   }
   
-export class EmailOboard extends React.Component {
+export class EmailForm extends React.Component {
     render () {
       return (
         <form>
@@ -20,7 +20,7 @@ export class EmailOboard extends React.Component {
     }
   }
   
- export class PasswordOnboard extends React.Component {
+ export class PasswordForm extends React.Component {
     render () {
       return (
         <form>
