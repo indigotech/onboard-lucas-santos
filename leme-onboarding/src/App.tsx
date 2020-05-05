@@ -28,7 +28,7 @@ class LoginOboard extends React.Component {
       <form>
         <label>
           E-mail: 
-          <input type="text" name="email" />
+          <input className="App_Form"  type="text" name="email" />
         </label>
       </form>
     );  
@@ -41,7 +41,7 @@ class PasswordOnboard extends React.Component {
       <form>
         <label>
           Senha:  
-          <input type="password" name="password"/>
+          <input className="App_Form" type="password" name="password"/>
         </label>
       </form>
     );
@@ -49,16 +49,13 @@ class PasswordOnboard extends React.Component {
 }
 
 class SubmitButtom extends React.Component {
+
   render () {
     return (
-      <button>
+      <button className="App_Button">
         Entrar
       </button>
     );
-  }
-
-  private handleButtonTap = () => {
-    // do something when button click
   }
 }
 
