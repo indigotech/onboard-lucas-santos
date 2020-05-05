@@ -1,33 +1,17 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+
 /*
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}*/
+Componentes: Welcome, LoginOnboard, PasswordOnboard, SubmitButtom
+*/
 
 function App() {
   return (
     <div className="App">
       <Welcome/>
-      <Login/>
+      <LoginOboard/>
+      <PasswordOnboard/>
+      <SubmitButtom/>
     </div>
   );
 }
@@ -38,24 +22,44 @@ class Welcome extends React.Component{
   }
 }
 
-class Login extends React.Component {
+class LoginOboard extends React.Component {
   render () {
     return (
       <form>
         <label>
-          Email
+          E-mail: 
           <input type="text" name="email" />
         </label>
-        <br/>
-        <label>
-          Senha
-          <input type="password" name="password"/>
-        </label>
-        <input type="submit" value="Enviar" />
       </form>
     );  
   }
 }
 
-//export default welcome;
+class PasswordOnboard extends React.Component {
+  render () {
+    return (
+      <form>
+        <label>
+          Senha:  
+          <input type="password" name="password"/>
+        </label>
+      </form>
+    );
+  }
+}
+
+class SubmitButtom extends React.Component {
+  render () {
+    return (
+      <button>
+        Entrar
+      </button>
+    );
+  }
+
+  private handleButtonTap = () => {
+    // do something when button click
+  }
+}
+
 export default App;
