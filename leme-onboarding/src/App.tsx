@@ -2,14 +2,14 @@ import React from 'react';
 import './App.css';
 
 /*
-Componentes: Welcome, LoginOnboard, PasswordOnboard, SubmitButtom
+Componentes: Welcome, EmailOnboard, PasswordOnboard, SubmitButtom
 */
 
 function App() {
   return (
     <div className="App">
       <Welcome/>
-      <LoginOboard/>
+      <EmailOboard/>
       <PasswordOnboard/>
       <SubmitButtom/>
     </div>
@@ -22,7 +22,7 @@ class Welcome extends React.Component{
   }
 }
 
-class LoginOboard extends React.Component {
+class EmailOboard extends React.Component {
   render () {
     return (
       <form>
