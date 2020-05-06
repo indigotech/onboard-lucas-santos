@@ -6,40 +6,23 @@ export class Welcome extends React.Component{
       return<h1>Bem-vindo(a) à Taqtile!</h1> 
     }
   }
-  
-export class EmailForm extends React.Component {
+
+export class Login extends React.Component {
     render () {
-      return (
-        <form>
-          <label>
-            E-mail: 
-            <input className="App_Form"  type="text" name="email" />
-          </label>
-        </form>
-      );  
-    }
-  }
-  
- export class PasswordForm extends React.Component {
-    render () {
-      return (
-        <form>
-          <label>
-            Senha:  
-            <input className="App_Form" type="password" name="password"/>
-          </label>
-        </form>
-      );
-    }
-  }
-  
-export class SubmitButtom extends React.Component {
-  
-    render () {
-      return (
-        <button className="App_Button">
-          Entrar
-        </button>
-      );
+        return (
+           <form>
+                <label>
+                        E-mail: 
+                    <input className="App_Form" type="text"/>
+                    <br/>
+                        Senha: 
+                    <input className="App_Form" type="password"/>
+                    <br/>
+                    <button className="App_Button">
+                        Entrar: 
+                    </button>
+                </label>
+            </form>
+        );
     }
 }
