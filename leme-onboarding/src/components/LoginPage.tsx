@@ -1,79 +1,143 @@
 import React from 'react';
 import './LoginPage.css';
+//import { stringify } from 'querystring';
 
 export interface LoginPageState {
     email: string;
     password: string;
 }
 
-export class Welcome extends React.Component{
-    render () {
-      return<h1>Bem-vindo(a) à Taqtile!</h1> 
+export class Welcome extends React.Component {
+    render() {
+        return <h1>Bem-vindo(a) à Taqtile!</h1>
     }
-  }
+}
 
-export class Login extends React.Component<{},LoginPageState> {
+export class Login extends React.Component<{}, LoginPageState> {
 
+    constructor(props: any) {
+        super(props);
 
-    email: string = "";
-    password: string = "";
-    
-    handleEmail () {
-        this.email = "lucas@taqtile.com"
+        this.state = {
+            email: "",
+            password: "",
+
+        }
+
     }
 
-    handlePassword () {
-        this.password =  "senha123"
-    }
+    private handleChange = (e: React.FormEvent<HTMLInputElement>) => {
+        const { name, value } = e.currentTarget;
+        this.setState({
+            [name]: value
+        } as Pick<LoginPageState, keyof LoginPageState>);
+    };
 
     validationEmail(email: string) {
+        /**
+         * 0 - Validated Email
+         * 1 - Empty field
+         * 2 Email not validated
+        */
 
-        const expression = /^[a-zA-Z0-9]+@(?:[a-zA-Z0-9]+\.)+[A-Za-z]+$/;
+        if (email.length === 0) {
+            return 1;
+        }
 
-        if (expression.test(String(email).toLowerCase())) { 
-            return true;
+        const emailRegex = /^[a-zA-Z0-9]+@(?:[a-zA-Z0-9]+\.)+[A-Za-z]+$/;
+
+        if (emailRegex.test(String(email).toLowerCase())) {
+            return 0;
         }
         else {
-            return false
+            return 2;
         }
     }
 
-    validationPassword (password: string) {
+    validationPassword(password: string) {
+        /*
+         * 0 Validated Password
+         * 1 Empty
+         * 2 Minimum 7 characters
+         * 3 One digit e one number 
+         */
+
+        if (password.length === 0) {
+            return 1;
+        }
+
+        const passwordRegex = /^.*(?=.{7,20})(?=.*\d)(?=.*[a-zA-Z]).*$/;
 
         if (password.length < 7) {
-            return false;
+            return 2;
+        }
+        else if (!passwordRegex.test(String(password).toLowerCase())) {
+            return 3;
         }
         else {
-            return true;
+            return 0
         }
-        
+
     }
 
-    private showError = () => {
-        this.handleEmail();
-        this.handlePassword();
+    private validate = () => {
 
-        console.log(this.email);
-        console.log(this.validationEmail(this.email));
+        let emailAlert: string = "";
+        let passwordAlert: string = "";
 
-        console.log(this.password);
-        console.log(this.validationPassword(this.password));
+        let emailError = this.validationEmail(this.state.email)
 
-        alert()
+        let passwordError = this.validationPassword(this.state.password);
+
+        // Email Messages
+        if (emailError === 0) {
+            emailAlert = "Email Validado!";
+        }
+        else {
+            if (emailError === 1) {
+                emailAlert = "Preencha o email";
+            }
+            else if (emailError === 2) {
+                emailAlert = "Email invalido";
+            }
+
+            alert(emailAlert);
+
+        }
+
+        // Password Messages
+        if (passwordError === 0) {
+            passwordAlert = "Senha válida!";
+        }
+        else {
+            if (passwordError === 1) {
+                passwordAlert = "Preencha a senha";
+            }
+            else if (passwordError === 2) {
+                passwordAlert = "Minimo 7 caracteres";
+            }
+            else if (passwordError === 3) {
+                passwordAlert = "Necessário pelo menos 1 número e 1 letra";
+            }
+
+            alert(passwordAlert);
+
+        }
+
     }
 
-    render () {
+    render() {
         return (
-           <form>
+            <form>
                 <label>
-                        E-mail: 
-                    <input className="App_Form" type="text" onChange={this.handleEmail}/>
-                    <br/>
-                        Senha: 
-                    <input className="App_Form" type="password" onChange={this.handlePassword}/>
-                    <br/>
-                    <button className="App_Button" onClick={this.showError}>
-                        Entrar: 
+                    E-mail:
+                    <input className="App_Form" type="text" name="email" onChange={this.handleChange} />
+                    <br />
+                        Senha:
+                    <input className="App_Form" type="password" name="password" onChange={this.handleChange} />
+                    <br />
+                    <button className="App_Button" onClick={this.validate}>
+                        Entrar:
                     </button>
                 </label>
             </form>
