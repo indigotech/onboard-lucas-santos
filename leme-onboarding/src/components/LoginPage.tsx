@@ -1,32 +1,10 @@
-//import React from 'react';
+import React from 'react';
 import './LoginPage.css';
-
-import React, { useState } from 'react';
-import { useMutation } from '@apollo/react-hooks';
-import gql from 'graphql-tag';
+import {mutateLogin} from './Authentication';
 
 export interface LoginPageState {
     email: string;
     password: string;
-}
-
-const LOGIN_TAQ = gql`
-    mutation Login($data:LoginInputType!){
-        login(data: $data){
-        token
-            user{
-                id
-                name
-                phone
-            }
-        }
-    }
-`;
-
-export class Welcome extends React.Component {
-    render() {
-        return <h1>Bem-vindo(a) à Taqtile!</h1>
-    }
 }
 
 export class Login extends React.Component<{}, LoginPageState> {
@@ -139,6 +117,15 @@ export class Login extends React.Component<{}, LoginPageState> {
             alert(passwordAlert);
 
         }
+
+        // Return Promise
+        mutateLogin(this.state.email, this.state.password)
+            .then((response: any) => {
+                alert(response.data.login.token);
+            })
+            .catch( (Error: any) => {
+                alert(Error.message);
+            })
 
     }
 
