@@ -1,23 +1,25 @@
+const VALIDATED_EMAIL = 0;
+const EMPTY_FIELD = 1;
+const EMAIL_NOT_VALIDATED = 2;
+
+const VALIDATED_PASSWORD = 0;
+const MINUMUM_CHARACTER = 2
+const PASSWORD_NOT_VALIDATED = 3;
 
 
 export function validationEmail(email: string) {
-    /**
-     * 0 - Validated Email
-     * 1 - Empty field
-     * 2 Email not validated
-    */
 
     if (email.length === 0) {
-        return 1;
+        return EMPTY_FIELD;
     }
 
     const emailRegex = /^[a-zA-Z0-9]+@(?:[a-zA-Z0-9]+\.)+[A-Za-z]+$/;
 
     if (emailRegex.test(String(email).toLowerCase())) {
-        return 0;
+        return VALIDATED_EMAIL;
     }
     else {
-        return 2;
+        return EMAIL_NOT_VALIDATED;
     }
 }
 
@@ -30,19 +32,19 @@ export function validationPassword(password: string) {
         */
 
     if (password.length === 0) {
-        return 1;
+        return EMPTY_FIELD;
     }
 
     const passwordRegex = /^.*(?=.{7,20})(?=.*\d)(?=.*[a-zA-Z]).*$/;
 
     if (password.length < 7) {
-        return 2;
+        return MINUMUM_CHARACTER;
     }
     else if (!passwordRegex.test(String(password).toLowerCase())) {
-        return 3;
+        return PASSWORD_NOT_VALIDATED;
     }
     else {
-        return 0
+        return VALIDATED_PASSWORD
     }
 
 }
