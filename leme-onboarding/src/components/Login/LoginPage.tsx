@@ -1,6 +1,6 @@
 import * as React from 'react';
 import './LoginPage.css';
-import {mutateLogin, saveToken} from './Authentication';
+import {mutateLogin, saveToken} from '../GraphQL/Authentication';
 import {validationEmail, validationPassword, errorAlert } from './Validation';
 
 
