@@ -31,9 +31,9 @@ export class Login extends React.Component<{}, LoginPageState> {
     private validate = () => {
 
 
-        let emailError = validationEmail(this.state.email)
+        const emailError = validationEmail(this.state.email);
 
-        let passwordError = validationPassword(this.state.password);
+        const passwordError = validationPassword(this.state.password);
 
         if(emailError === 0 && passwordError === 0 ) {
             // Return Promise
