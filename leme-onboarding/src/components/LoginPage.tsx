@@ -1,7 +1,9 @@
-import React from 'react';
+import * as React from 'react';
 import './LoginPage.css';
 import {mutateLogin, saveToken} from './Authentication';
 import {validationEmail, validationPassword, errorAlert } from './Validation';
+import { useHistory } from 'react-router-dom';
+import { createBrowserHistory } from 'history';
 
 export interface LoginPageState {
     email: string;
@@ -28,19 +30,24 @@ export class Login extends React.Component<{}, LoginPageState> {
         } as Pick<LoginPageState, keyof LoginPageState>);
     };
 
-    private validate = () => {
-
+    private authenticate =  () => {
 
         const emailError = validationEmail(this.state.email);
 
         const passwordError = validationPassword(this.state.password);
 
+        const history = createBrowserHistory ()
+
         if(emailError === 0 && passwordError === 0 ) {
+
             // Return Promise
             mutateLogin(this.state.email, this.state.password)
             .then((response: any) => {
-                saveToken(response.data.login.token)
-                alert(response.data.login.token);
+                saveToken(response)
+                alert(response);
+
+                history.push("/home");
+
             })
             .catch( (Error: any) => {
                 alert(Error.message);
@@ -61,8 +68,8 @@ export class Login extends React.Component<{}, LoginPageState> {
                         Senha:
                     <input className="App_Form" type="password" name="password" onChange={this.handleChange} />
                     <br />
-                    <button className="App_Button" onClick={this.validate}>
-                        Entrar:
+                    <button className="App_Button" onClick={this.authenticate}>
+                        Entrar
                     </button>
                 </label>
             </form>

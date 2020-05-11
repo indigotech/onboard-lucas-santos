@@ -1,3 +1,4 @@
+import * as React from 'react';
 import gql from 'graphql-tag';
 import ApolloClient from 'apollo-client';
 import {InMemoryCache} from 'apollo-cache-inmemory';
@@ -33,17 +34,16 @@ const client = new ApolloClient({
  * @param {string} password 
  */
 
-export function mutateLogin (email: string, password: string) {
-
-    return (
-        client.mutate({
+export async function mutateLogin (email: string, password: string) {
+    const result =  await client.mutate({
             mutation: LOGIN_TAQ,
             variables : {
                 data: { email, password }
             },
             fetchPolicy: "no-cache",
         })
-    )
+
+    return result.data?.login.token;
 }
 
 /**
