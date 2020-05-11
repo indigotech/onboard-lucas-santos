@@ -39,3 +39,7 @@ export function mutateLogin (email: string, password: string) {
         })
     )
 }
+
+export function saveToken (token: string) {
+    localStorage.getItem(token);
+}

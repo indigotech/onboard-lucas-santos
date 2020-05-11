@@ -1,13 +1,9 @@
 import React from 'react';
 import './components/LoginPage.css';
-import {Welcome, Login} from './components/LoginPage';
-
-/*
-Componentes: Welcome, EmailOnboard, PasswordOnboard, SubmitButtom
-*/
+import {Login} from './components/LoginPage';
+import {Welcome} from './components/Welcome';
 
 function App() {
-
   return (
     <div className="App">
       <Welcome/>
