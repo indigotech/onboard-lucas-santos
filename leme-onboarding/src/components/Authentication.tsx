@@ -1,8 +1,8 @@
-import * as React from 'react';
 import gql from 'graphql-tag';
 import ApolloClient from 'apollo-client';
 import {InMemoryCache} from 'apollo-cache-inmemory';
 import { createHttpLink } from "apollo-link-http";
+import { createBrowserHistory } from 'history';
 
 
 export const LOGIN_TAQ = gql`
@@ -26,6 +26,8 @@ const client = new ApolloClient({
     link: httpLink,
     cache: new InMemoryCache()
 })
+
+const history = createBrowserHistory({forceRefresh:true});
 
 /**
  * Mutation login
@@ -55,4 +57,6 @@ export async function mutateLogin (email: string, password: string) {
 export function saveToken (token: string) {
     localStorage.setItem("TOKEN", token);
     console.log(localStorage.getItem("TOKEN"));
+    
+    history.push("/home");
 }

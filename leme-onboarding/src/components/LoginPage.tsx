@@ -2,8 +2,7 @@ import * as React from 'react';
 import './LoginPage.css';
 import {mutateLogin, saveToken} from './Authentication';
 import {validationEmail, validationPassword, errorAlert } from './Validation';
-import { useHistory } from 'react-router-dom';
-import { createBrowserHistory } from 'history';
+
 
 export interface LoginPageState {
     email: string;
@@ -18,7 +17,6 @@ export class Login extends React.Component<{}, LoginPageState> {
         this.state = {
             email: "",
             password: "",
-
         }
 
     }
@@ -36,31 +34,24 @@ export class Login extends React.Component<{}, LoginPageState> {
 
         const passwordError = validationPassword(this.state.password);
 
-        const history = createBrowserHistory ()
-
         if(emailError === 0 && passwordError === 0 ) {
 
             // Return Promise
             mutateLogin(this.state.email, this.state.password)
             .then((response: any) => {
-                saveToken(response)
-                alert(response);
-
-                history.push("/home");
-
+                saveToken(response);
             })
             .catch( (Error: any) => {
                 alert(Error.message);
             })
         }
         else {
-                errorAlert(emailError, passwordError);
+            errorAlert(emailError, passwordError);
         }
     }
 
     render() {
         return (
-            <form>
                 <label>
                     E-mail:
                     <input className="App_Form" type="text" name="email" onChange={this.handleChange} />
@@ -72,7 +63,6 @@ export class Login extends React.Component<{}, LoginPageState> {
                         Entrar
                     </button>
                 </label>
-            </form>
         );
     }
 }
