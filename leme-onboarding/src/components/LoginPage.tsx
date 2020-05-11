@@ -1,16 +1,11 @@
 import React from 'react';
 import './LoginPage.css';
-//import { stringify } from 'querystring';
+import {mutateLogin, saveToken} from './Authentication';
+import {validationEmail, validationPassword, errorAlert } from './Validation';
 
 export interface LoginPageState {
     email: string;
     password: string;
-}
-
-export class Welcome extends React.Component {
-    render() {
-        return <h1>Bem-vindo(a) à Taqtile!</h1>
-    }
 }
 
 export class Login extends React.Component<{}, LoginPageState> {
@@ -33,97 +28,27 @@ export class Login extends React.Component<{}, LoginPageState> {
         } as Pick<LoginPageState, keyof LoginPageState>);
     };
 
-    validationEmail(email: string) {
-        /**
-         * 0 - Validated Email
-         * 1 - Empty field
-         * 2 Email not validated
-        */
-
-        if (email.length === 0) {
-            return 1;
-        }
-
-        const emailRegex = /^[a-zA-Z0-9]+@(?:[a-zA-Z0-9]+\.)+[A-Za-z]+$/;
-
-        if (emailRegex.test(String(email).toLowerCase())) {
-            return 0;
-        }
-        else {
-            return 2;
-        }
-    }
-
-    validationPassword(password: string) {
-        /*
-         * 0 Validated Password
-         * 1 Empty
-         * 2 Minimum 7 characters
-         * 3 One digit e one number 
-         */
-
-        if (password.length === 0) {
-            return 1;
-        }
-
-        const passwordRegex = /^.*(?=.{7,20})(?=.*\d)(?=.*[a-zA-Z]).*$/;
-
-        if (password.length < 7) {
-            return 2;
-        }
-        else if (!passwordRegex.test(String(password).toLowerCase())) {
-            return 3;
-        }
-        else {
-            return 0
-        }
-
-    }
-
     private validate = () => {
 
-        let emailAlert: string = "";
-        let passwordAlert: string = "";
 
-        let emailError = this.validationEmail(this.state.email)
+        const emailError = validationEmail(this.state.email);
 
-        let passwordError = this.validationPassword(this.state.password);
+        const passwordError = validationPassword(this.state.password);
 
-        // Email Messages
-        if (emailError === 0) {
-            emailAlert = "Email Validado!";
+        if(emailError === 0 && passwordError === 0 ) {
+            // Return Promise
+            mutateLogin(this.state.email, this.state.password)
+            .then((response: any) => {
+                saveToken(response.data.login.token)
+                alert(response.data.login.token);
+            })
+            .catch( (Error: any) => {
+                alert(Error.message);
+            })
         }
         else {
-            if (emailError === 1) {
-                emailAlert = "Preencha o email";
-            }
-            else if (emailError === 2) {
-                emailAlert = "Email invalido";
-            }
-
-            alert(emailAlert);
-
+                errorAlert(emailError, passwordError);
         }
-
-        // Password Messages
-        if (passwordError === 0) {
-            passwordAlert = "Senha válida!";
-        }
-        else {
-            if (passwordError === 1) {
-                passwordAlert = "Preencha a senha";
-            }
-            else if (passwordError === 2) {
-                passwordAlert = "Minimo 7 caracteres";
-            }
-            else if (passwordError === 3) {
-                passwordAlert = "Necessário pelo menos 1 número e 1 letra";
-            }
-
-            alert(passwordAlert);
-
-        }
-
     }
 
     render() {
