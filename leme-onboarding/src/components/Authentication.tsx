@@ -25,7 +25,13 @@ const client = new ApolloClient({
     link: httpLink,
     cache: new InMemoryCache()
 })
-  
+
+/**
+ * Mutation login
+ * 
+ * @param {string} email 
+ * @param {string} password 
+ */
 
 export function mutateLogin (email: string, password: string) {
 
@@ -40,6 +46,13 @@ export function mutateLogin (email: string, password: string) {
     )
 }
 
+/**
+ * Saves login token
+ * 
+ * @param {string} token 
+ */
+
 export function saveToken (token: string) {
-    localStorage.getItem(token);
+    localStorage.setItem("TOKEN", token);
+    console.log(localStorage.getItem("TOKEN"));
 }

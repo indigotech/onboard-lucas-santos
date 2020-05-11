@@ -6,6 +6,15 @@ const VALIDATED_PASSWORD = 0;
 const MINUMUM_CHARACTER = 2
 const PASSWORD_NOT_VALIDATED = 3;
 
+/**
+ * Validates a email
+ * 
+ * @param {string} email
+ * @return {number}
+ * - 0 Validated Email
+ * - 1 Empty
+ * - 2 Email not validated
+ */
 
 export function validationEmail(email: string) {
 
@@ -23,13 +32,18 @@ export function validationEmail(email: string) {
     }
 }
 
+/**
+ * Validates a password
+ * 
+ * @param {string} password
+ * @return {number}
+ * - 0 Validated Password
+ * - 1 Empty
+ * - 2 Minimum 7 characters
+ * - 3 One digit e one number 
+ */
+
 export function validationPassword(password: string) {
-    /*
-        * 0 Validated Password
-        * 1 Empty
-        * 2 Minimum 7 characters
-        * 3 One digit e one number 
-        */
 
     if (password.length === 0) {
         return EMPTY_FIELD;
@@ -49,10 +63,18 @@ export function validationPassword(password: string) {
 
 }
 
+/**
+ * User form error alert
+ * 
+ * @param {number} emailError 
+ * @param {number} passwordError 
+ */
+
 export function errorAlert(emailError: number, passwordError: number){
 
     let emailAlert: string = "";
     let passwordAlert: string = "";
+    
     // Email Messages
     if (emailError === 0) {
         emailAlert = "Email Validado!";
