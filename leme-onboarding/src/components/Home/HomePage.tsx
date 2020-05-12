@@ -1,46 +1,64 @@
 import React from 'react';
+import './HomePage.css';
 import {Table} from 'react-bootstrap';
-import './HomePage.css'
+import {queryUsers, UsersList} from '../GraphQL/Users';
 
-interface HomePageState {
-    name: Array<string>,
-    email: Array<string>,
-}
-
-export class HomePage extends React.Component<{}, HomePageState> {
+export class HomePage extends React.Component<{}, UsersList> {
 
     constructor (props: any) {
         super(props)
 
         this.state = {
-            name: ["Lucas", "André", "Paula"],
-            email: ["lucas@email.com", "andre@email.com", "paula@email.com"],
+            users: {
+                nodes:[
+                    {email: "",
+                    name: "",
+                }]
+            }
         }
+    }
 
+    async query() {
+        
+        queryUsers().then((response: UsersList) => {
+            this.setState({users: response.users})
+            //alert(response.users.nodes)
+        })
+        .catch((Error: any) => {
+            alert("ERRO: " + Error.message);
+        })
+    }
+
+    componentDidMount() {
+        this.query()
     }
 
     render () {
+        
+        const { nodes } = this.state.users
+
         return (
             <h1>
                 Lista de Usuários
+                <br/>
                 <Table striped bordered hover>
                     <thead>
                         <tr>
                             <th> Nome </th>
-                            <th>Email</th>
+                            <th> Email </th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            {this.state.name.map(function(item) {
-                                    return <td>{item}</td>
+                            {nodes.map(function(item) {
+                                    return <td>{item.name}</td>
                                 })  
                              }
                         </tr>
                         <th> </th>
                             <tr>
-                                {this.state.email.map(function(item) {
-                                        return <td>{item}</td>
+                                {nodes.map(function(item) {
+                                        return <td>{item.email}</td>
                                     })  
                                 }
                             </tr>
@@ -51,3 +69,6 @@ export class HomePage extends React.Component<{}, HomePageState> {
         );
     }
 }
+// {nodes.map(function(item) {
+//     return <p>Nome: {item.name}, Email: {item.email} </p>
+// })}

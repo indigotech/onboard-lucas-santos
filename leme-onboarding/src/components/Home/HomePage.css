@@ -8,7 +8,11 @@ table tr td {
     display: block;
 }
 
-table td {
+table td th {
     border: 2px solid black;
     padding: 15px;
+}
+
+table th {
+    columns: 2;
 }
