@@ -2,6 +2,7 @@ import gql from 'graphql-tag';
 import ApolloClient from 'apollo-client';
 import {InMemoryCache} from 'apollo-cache-inmemory';
 import { createHttpLink } from "apollo-link-http";
+import { createBrowserHistory } from 'history';
 
 
 export const LOGIN_TAQ = gql`
@@ -26,6 +27,8 @@ const client = new ApolloClient({
     cache: new InMemoryCache()
 })
 
+const history = createBrowserHistory({forceRefresh:true});
+
 /**
  * Mutation login
  * 
@@ -33,17 +36,16 @@ const client = new ApolloClient({
  * @param {string} password 
  */
 
-export function mutateLogin (email: string, password: string) {
-
-    return (
-        client.mutate({
+export async function mutateLogin (email: string, password: string) {
+    const result =  await client.mutate({
             mutation: LOGIN_TAQ,
             variables : {
                 data: { email, password }
             },
             fetchPolicy: "no-cache",
         })
-    )
+
+    return result.data?.login.token;
 }
 
 /**
@@ -54,5 +56,6 @@ export function mutateLogin (email: string, password: string) {
 
 export function saveToken (token: string) {
     localStorage.setItem("TOKEN", token);
-    console.log(localStorage.getItem("TOKEN"));
+    
+    history.push("/home");
 }
