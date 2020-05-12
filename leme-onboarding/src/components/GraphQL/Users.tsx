@@ -6,7 +6,7 @@ import { createBrowserHistory } from 'history';
 
 const USERS_TAQ = gql`
 query users {
-    users(pageInfo : {offset : 0, limit : 50}){
+    users(pageInfo : {offset : 0, limit : 10}){
       nodes{
           name
           email

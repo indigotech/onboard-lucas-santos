@@ -1,5 +1,6 @@
 table {
-	display: table;
+    display: grid;
+    justify-content: space-around;
 }
 table tr {
     display: table-cell;
@@ -8,11 +9,12 @@ table tr td {
     display: block;
 }
 
-table td th {
-    border: 2px solid black;
-    padding: 15px;
+table thead {
+    columns: 2;
+    font-size: 60px;
+    padding:0.1em 1.2em;
 }
 
-table th {
-    columns: 2;
+table tbody {
+ text-align: center;   
 }
