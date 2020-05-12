@@ -56,7 +56,6 @@ export async function mutateLogin (email: string, password: string) {
 
 export function saveToken (token: string) {
     localStorage.setItem("TOKEN", token);
-    console.log(localStorage.getItem("TOKEN"));
     
     history.push("/home");
 }

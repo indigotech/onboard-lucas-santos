@@ -28,7 +28,7 @@ export class Login extends React.Component<{}, LoginPageState> {
         } as Pick<LoginPageState, keyof LoginPageState>);
     };
 
-    private authenticate =  () => {
+    private handleButtomClick =  () => {
 
         const emailError = validationEmail(this.state.email);
 
@@ -59,7 +59,7 @@ export class Login extends React.Component<{}, LoginPageState> {
                         Senha:
                     <input className="App_Form" type="password" name="password" onChange={this.handleChange} />
                     <br />
-                    <button className="App_Button" onClick={this.authenticate}>
+                    <button className="App_Button" onClick={this.handleButtomClick}>
                         Entrar
                     </button>
                 </label>
