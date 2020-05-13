@@ -5,6 +5,7 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import {BrowserRouter as Switch, Route, BrowserRouter} from "react-router-dom";
 import { HomePage } from './components/Home/HomePage';
+import {AddUser} from './components/AddUser/AddUser';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -12,6 +13,7 @@ ReactDOM.render(
       <Switch>
           <Route path="/login" exact={true} component={App} />
           <Route path="/home" component={HomePage} />
+          <Route path="/add" component={AddUser} />
       </Switch>
     </BrowserRouter>
   </React.StrictMode>,

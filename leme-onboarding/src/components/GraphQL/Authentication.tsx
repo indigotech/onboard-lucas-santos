@@ -27,7 +27,7 @@ const client = new ApolloClient({
     cache: new InMemoryCache()
 })
 
-const history = createBrowserHistory({forceRefresh:true});
+export const history = createBrowserHistory({forceRefresh:true});
 
 /**
  * Mutation login
@@ -59,7 +59,3 @@ export function saveToken (token: string) {
 
     history.push("/home");
 }
-
-/**
- * 
- */
