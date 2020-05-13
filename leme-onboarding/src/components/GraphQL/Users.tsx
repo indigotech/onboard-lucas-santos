@@ -5,8 +5,8 @@ import { createHttpLink } from "apollo-link-http";
 import { createBrowserHistory } from 'history';
 
 const USERS_TAQ = gql`
-query users {
-    users(pageInfo : {offset : 0, limit : 10}){
+query UserList($offset: Int!, $limit: Int!) {
+    users(pageInfo : {offset: $offset, limit: $limit}){
       nodes{
           name
           email
@@ -36,9 +36,10 @@ export const client = new ApolloClient({
     cache: new InMemoryCache()
 })
 
-export async function queryUsers() {
+export async function queryUsers(offset: number, limit: number) {
     const result = await client.query<UsersList>({
         query: USERS_TAQ,
+        variables:  {offset, limit}
     })
 
     return result.data;

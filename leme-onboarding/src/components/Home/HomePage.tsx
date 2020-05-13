@@ -3,29 +3,34 @@ import './HomePage.css';
 import {Table} from 'react-bootstrap';
 import {queryUsers, UsersList} from '../GraphQL/Users';
 
-export class HomePage extends React.Component<{}, UsersList> {
+export interface UsersListState {
+    users : {
+            name: string;
+            email: string;
+        }[];
+}
+
+export class HomePage extends React.Component<{}, UsersListState> {
 
     constructor (props: any) {
         super(props)
 
         this.state = {
-            users: {
-                nodes:[
+            users: [
                     {email: "",
                     name: "",
                 }]
             }
-        }
     }
 
     async query() {
-        
-        queryUsers().then((response: UsersList) => {
-            this.setState({users: response.users})
-        })
-        .catch((Error: any) => {
+
+        try {
+            const responde = await queryUsers(0, 10);
+            this.setState({users: responde.users.nodes})
+        } catch (Error) {
             alert("ERRO: " + Error.message);
-        })
+        }
     }
 
     componentDidMount() {
@@ -33,8 +38,8 @@ export class HomePage extends React.Component<{}, UsersList> {
     }
 
     render () {
-        
-        const { nodes } = this.state.users
+
+        const {users} = this.state
 
         return (
             <h1>
@@ -46,14 +51,14 @@ export class HomePage extends React.Component<{}, UsersList> {
                     </thead>
                     <tbody>
                         <tr>
-                            {nodes.map(function(item) {
+                            {users.map(function(item) {
                                     return <td>{item.name}</td>
                                 })  
                              }
                         </tr>
                         <th> </th>
                             <tr>
-                                {nodes.map(function(item) {
+                                {users.map(function(item) {
                                         return <td>{item.email}</td>
                                     })  
                                 }
@@ -65,6 +70,3 @@ export class HomePage extends React.Component<{}, UsersList> {
         );
     }
 }
-// {nodes.map(function(item) {
-//     return <p>Nome: {item.name}, Email: {item.email} </p>
-// })}
