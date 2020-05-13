@@ -10,6 +10,11 @@ query UserList($offset: Int!, $limit: Int!) {
           name
           email
       }
+      pageInfo {
+          limit
+          hasNextPage
+          hasPreviousPage
+      }
     }
 }`;
 
@@ -26,6 +31,10 @@ export interface UsersList {
             name: string;
             email: string;
         }[];
+        pageInfo: {
+            limit: number;
+            hasNextPage: boolean;
+            hasPreviousPage: boolean;}
     }
 }
 

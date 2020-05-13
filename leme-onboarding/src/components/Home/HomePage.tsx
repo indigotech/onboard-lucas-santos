@@ -2,6 +2,7 @@ import React from 'react';
 import './HomePage.css';
 import {Table} from 'react-bootstrap';
 import {queryUsers} from '../GraphQL/Users';
+import { throws } from 'assert';
 
 export interface UsersListState {
     users : {
@@ -10,6 +11,8 @@ export interface UsersListState {
         }[];
         offset: number;
         limit: number;
+        hasNextPage: boolean;
+        hasPreviosPage: boolean;
 }
 
 export class HomePage extends React.Component<{}, UsersListState> {
@@ -24,6 +27,8 @@ export class HomePage extends React.Component<{}, UsersListState> {
                 }],
                 offset: 0,
                 limit: 10,
+                hasNextPage: true,
+                hasPreviosPage: false,
             }
     }
 
@@ -32,29 +37,35 @@ export class HomePage extends React.Component<{}, UsersListState> {
         try {
             const responde = await queryUsers(offset, limit);
             this.setState({users: responde.users.nodes})
+            this.setState({hasNextPage: responde.users.pageInfo.hasNextPage})
+            this.setState({hasPreviosPage: responde.users.pageInfo.hasPreviousPage})
         } catch (Error) {
             alert("ERRO: " + Error.message);
         }
+
+
     }
 
-    private handleNextPage =  () => {
+    private handleNextPage = async () => {
 
-        this.setState({offset: this.state.offset + 10})
+        const nextOffset = this.state.offset + 10
 
-        this.query(this.state.offset, this.state.limit);
+        await this.query(nextOffset, this.state.limit);
+
+        this.setState({offset: nextOffset});
     }
 
-    private handlePreviousPage =  () => {
+    private handlePreviousPage =  async () => {
 
-        this.setState({offset: this.state.offset - 10})
+        const nextOffset = this.state.offset - 10
 
-        this.query(this.state.offset, this.state.limit);
+        await this.query(nextOffset, this.state.limit);
+
+        this.setState({offset: nextOffset});
     }
-
-
 
     componentDidMount() {
-        this.query(0, 10)
+        this.query(this.state.offset, this.state.limit)
     }
 
     render () {
@@ -85,8 +96,10 @@ export class HomePage extends React.Component<{}, UsersListState> {
                             </tr>
                     </tbody>
                 </Table>
-                <button onClick={this.handlePreviousPage}>Anterior</button>
-                <button onClick={this.handleNextPage}>Próxima</button>
+                <div>
+                    <button onClick={this.handlePreviousPage} disabled={!this.state.hasPreviosPage}>Anterior</button>
+                    <button onClick={this.handleNextPage}disabled={!this.state.hasNextPage} >Próxima</button>
+                </div>
             </h1>
         
         );
