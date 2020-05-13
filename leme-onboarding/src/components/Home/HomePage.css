@@ -1,0 +1,20 @@
+table {
+    display: grid;
+    justify-content: space-around;
+}
+table tr {
+    display: table-cell;
+}
+table tr td {
+    display: block;
+}
+
+table thead {
+    columns: 2;
+    font-size: 60px;
+    padding:0.1em 1.2em;
+}
+
+table tbody {
+    text-align: center;   
+}

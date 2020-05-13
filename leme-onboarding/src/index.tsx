@@ -4,7 +4,7 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import {BrowserRouter as Switch, Route, BrowserRouter} from "react-router-dom";
-import { HomePage } from './components/HomePage';
+import { HomePage } from './components/Home/HomePage';
 
 ReactDOM.render(
   <React.StrictMode>

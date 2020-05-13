@@ -1,7 +1,8 @@
 import React from 'react';
-import './components/LoginPage.css';
-import {Login} from './components/LoginPage';
-import {Welcome} from './components/Welcome';
+import './components/Login/LoginPage.css';
+import {Login} from './components/Login/LoginPage';
+import {Welcome} from './components/Login/Welcome';
+
 
 function App() {
   return (
