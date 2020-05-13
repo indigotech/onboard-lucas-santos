@@ -2,7 +2,6 @@ import gql from 'graphql-tag';
 import ApolloClient from 'apollo-client';
 import {InMemoryCache} from 'apollo-cache-inmemory';
 import { createHttpLink } from "apollo-link-http";
-import { createBrowserHistory } from 'history';
 
 const USERS_TAQ = gql`
 query UserList($offset: Int!, $limit: Int!) {
