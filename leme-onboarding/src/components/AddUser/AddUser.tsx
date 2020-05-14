@@ -31,6 +31,7 @@ export class AddUser extends React.Component<{},AddUserState> {
             
             if (result === true ) {
                 mutationUser(this.state.name, this.state.email, this.state.phone, this.state.birthDate, this.state.password, "user")
+                alert("Usuário adicionado!")
             }
         } catch (Error) {
             alert(Error.message)
