@@ -6,6 +6,12 @@ const VALIDATED_PASSWORD = 0;
 const MINUMUM_CHARACTER = 2
 const PASSWORD_NOT_VALIDATED = 3;
 
+const VALIDATED_NAME = 0;
+const NAME_NOT_VALIDATED = 3;
+
+const VALIDATED_PHONE = 0;
+const PHONE_NOT_VALIDATED = 3;
+
 /**
  * Validates a email
  * 
@@ -58,10 +64,43 @@ export function validationPassword(password: string) {
         return PASSWORD_NOT_VALIDATED;
     }
     else {
-        return VALIDATED_PASSWORD
+        return VALIDATED_PASSWORD;
     }
 
 }
+
+export function validationName (name: string) {
+    
+    if (name.length === 0) {
+        return EMPTY_FIELD;
+    }
+    
+    const nameRegex = /^[a-zA-Z]+ [a-zA-Z]+$/;
+
+    if (nameRegex.test(String(name).toLowerCase())){
+        return VALIDATED_NAME;
+    }
+    else {
+        return NAME_NOT_VALIDATED;
+    }
+}
+
+export function validationPhone (phone: string) {
+    
+    if (phone.length === 0) {
+        return EMPTY_FIELD
+    }
+
+    const phoneRegex = /^(?:[12][1-9]9[2-9]|[3-9][1-9][5-9])[0-9]{7}$/;
+
+    if (phoneRegex.test(String(phone).toLowerCase())) {
+        return VALIDATED_PHONE;
+    }
+    else {
+        return PHONE_NOT_VALIDATED;
+    }
+}
+
 // TODO
 // export function validationCPF (cpf: number) {
 

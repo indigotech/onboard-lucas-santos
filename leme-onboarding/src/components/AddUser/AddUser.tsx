@@ -1,6 +1,6 @@
 import React from 'react';
 import './AddUser.css';
-import {validationPassword, validationEmail} from '../GraphQL/Validation';
+import {validationPassword, validationEmail, validationName} from '../GraphQL/Validation';
 
 export interface AddUserState {
     name: string;
@@ -32,13 +32,13 @@ export class AddUser extends React.Component<{},AddUserState> {
 
     private handleButtomClick =  () => {
         
-        alert(validationEmail(this.state.email))
-        alert(validationPassword(this.state.password))
+        alert(validationName(this.state.name));
+
     }
     
     render() {
         return (
-            <div>
+            <label>
                 Nome:
                 <input type="text" name="name" onChange={this.handleChange}/>
                 <br/>
@@ -55,7 +55,7 @@ export class AddUser extends React.Component<{},AddUserState> {
                 <input type="password" name="password" onChange={this.handleChange}/>
                 <br/>
                 <button onClick={this.handleButtomClick}>Adicionar</button>
-            </div>
+            </label>
         )
     }
 }
