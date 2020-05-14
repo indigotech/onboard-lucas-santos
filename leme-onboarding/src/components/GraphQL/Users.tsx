@@ -7,6 +7,7 @@ const USERS_TAQ = gql`
 query UserList($offset: Int!, $limit: Int!) {
     users(pageInfo : {offset: $offset, limit: $limit}){
       nodes{
+          id
           name
           email
       }
@@ -28,6 +29,7 @@ const httpLink = createHttpLink({
 export interface UsersList {
     users : {
         nodes: {
+            id: string;
             name: string;
             email: string;
         }[];

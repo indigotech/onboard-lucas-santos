@@ -6,6 +6,7 @@ import {history} from '../GraphQL/Authentication';
 
 export interface UsersListState {
     users : {
+            id: string;
             name: string;
             email: string;
         }[];
@@ -22,7 +23,8 @@ export class HomePage extends React.Component<{}, UsersListState> {
 
         this.state = {
             users: [
-                    {email: "",
+                    {id:"",
+                    email: "",
                     name: "",
                 }],
                 offset: 0,
@@ -90,7 +92,14 @@ export class HomePage extends React.Component<{}, UsersListState> {
                     <tbody>
                         <tr>
                             {users.map(function(item) {
-                                    return <td>{item.name}</td>
+                                const userPath: string = "user/" + item.id;
+                                        return( 
+                                            <td>
+                                                <a href={userPath}>
+                                                {item.name}
+                                                </a>
+                                            </td>
+                                        )
                                 })  
                              }
                         </tr>
