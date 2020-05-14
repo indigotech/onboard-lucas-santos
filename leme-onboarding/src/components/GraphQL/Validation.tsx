@@ -93,9 +93,9 @@ export function validationPhone (phone: string) {
         return EMPTY_FIELD
     }
 
-    const phoneRegex = /^\([1-9]{2}\) (?:[2-8]|9[1-9])[0-9]{3}\-[0-9]{4}$/;
+    //const phoneRegex = /^\([1-9]{2}\) (?:[2-8]|9[1-9])[0-9]{3}\-[0-9]{4}$/;
 
-    if (phoneRegex.test(String(phone).toLowerCase())) {
+    if (phone.length === 11) {
         return VALIDATED;
     }
     else {
@@ -118,11 +118,6 @@ export function validationBirthDate (birthDate: string) {
         return BIRTHDATE_NOT_VALIDATED;
     }
 }
-
-// TODO
-// export function validationCPF (cpf: number) {
-
-// }
 
 /**
  * User form error alert
@@ -169,4 +164,82 @@ export function errorAlert(emailError: number, passwordError: number){
 
         alert(passwordAlert);
     }
+}
+
+export function errorAddUser (name: string, email: string, phone: string, birthDate: string, password:string) {
+    
+    let message = "";
+
+    const nameError = validationName (name)
+    const emailError = validationEmail (email)
+    const phoneError = validationPhone (phone)
+    const birthDateError = validationBirthDate (birthDate)
+    const passwordError = validationPassword (password)
+
+
+    // Name messages
+    if (nameError === 0) {
+        // Correct name
+    } 
+    else if (nameError === 1) {
+        message = message + "Nome Vazio\n";
+    } 
+    else {
+        message = message + "Nome não válido, preencha apenas nome e sobrenome\n";
+    }
+
+    // Email messages
+    if (emailError === 0) {
+        // Correct email
+    }
+    else if (emailError === 1) {
+            message = message +  "Preencha o email\n";
+    }
+    else if (emailError === 2) {
+            message = message +  "Email invalido\n";
+    }
+
+
+    // Phone messages
+    if (phoneError === 0) {
+        // Correct name
+    } 
+    else if (phoneError === 1) {
+        message = message + "Telefone Vazio\n";
+    } 
+    else {
+        message = message + "Telefone incorreto, preecha: (xx) xxxx-xxxx\n";
+    }
+
+    // Birth Date messages
+    if (birthDateError === 0) {
+        // Correct birthdate
+    }
+    else if (birthDateError === 1) {
+        message = message + "Data de nascimento vázia\n";
+    }
+    else  {
+        message = message + "Data de nascimento incorreta, preencha yyyy-mm-dd\n";
+    }
+
+    // Password messages
+    if (passwordError === 0) {
+        // Correct password
+    }
+    else {
+        
+        if (passwordError === 1) {
+            message = message +  "Preencha a senha\n";
+        }
+        else if (passwordError.valueOf() === 2) {
+                message = message + "Minimo 7 caracteres\n";
+        }
+        else if (passwordError === 3) {
+                message = message +  "Necessário pelo menos 1 número e 1 letra\n";
+        }
+    }
+
+    if (message.length != 0)
+        alert(message);
+    
 }

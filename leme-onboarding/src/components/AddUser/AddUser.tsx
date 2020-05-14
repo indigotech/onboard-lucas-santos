@@ -1,6 +1,6 @@
 import React from 'react';
 import './AddUser.css';
-import {validationPassword, validationEmail, validationName, validationPhone, validationBirthDate} from '../GraphQL/Validation';
+import {errorAddUser} from '../GraphQL/Validation';
 
 export interface AddUserState {
     name: string;
@@ -32,7 +32,7 @@ export class AddUser extends React.Component<{},AddUserState> {
 
     private handleButtomClick =  () => {
         
-        alert(validationPhone(this.state.phone));
+        errorAddUser(this.state.name, this.state.email, this.state.phone, this.state.birthDate, this.state.password)
 
     }
     
