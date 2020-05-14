@@ -36,17 +36,11 @@ export class HomePage extends React.Component<{}, UsersListState> {
 
         try {
             const responde = await queryUsers(offset, limit);
-<<<<<<< HEAD
             this.setState({
               users: responde.users.nodes,
               hasNextPage: responde.users.pageInfo.hasNextPage,
               hasPreviosPage: responde.users.pageInfo.hasPreviousPage,
             });
-=======
-            this.setState({users: responde.users.nodes});
-            this.setState({hasNextPage: responde.users.pageInfo.hasNextPage});
-            this.setState({hasPreviosPage: responde.users.pageInfo.hasPreviousPage});
->>>>>>> f688add... Add form structure
         } catch (Error) {
             alert("ERRO: " + Error.message);
         }

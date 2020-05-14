@@ -1,12 +1,12 @@
 import React from 'react';
 import './AddUser.css';
-import {validationPassword, validationEmail, validationName} from '../GraphQL/Validation';
+import {validationPassword, validationEmail, validationName, validationPhone, validationBirthDate} from '../GraphQL/Validation';
 
 export interface AddUserState {
     name: string;
     email: string;
     phone: string;
-    birthData: string;
+    birthDate: string;
     password: string;
 }
 
@@ -18,7 +18,7 @@ export class AddUser extends React.Component<{},AddUserState> {
             name: "",
             email: "",
             phone: "",
-            birthData: "",
+            birthDate: "",
             password: "",
         }
     }
@@ -32,7 +32,7 @@ export class AddUser extends React.Component<{},AddUserState> {
 
     private handleButtomClick =  () => {
         
-        alert(validationName(this.state.name));
+        alert(validationPhone(this.state.phone));
 
     }
     
@@ -49,7 +49,7 @@ export class AddUser extends React.Component<{},AddUserState> {
                 <input type="text" name="phone" onChange={this.handleChange}/>
                 <br/>
                 Data de Nascimento:
-                <input type="text" name="birthData" onChange={this.handleChange}/>
+                <input type="text" name="birthDate" onChange={this.handleChange}/>
                 <br/>
                 Senha:
                 <input type="password" name="password" onChange={this.handleChange}/>

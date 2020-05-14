@@ -1,16 +1,18 @@
-const VALIDATED_EMAIL = 0;
+import { realpathSync } from "fs";
+
+const VALIDATED = 0;
 const EMPTY_FIELD = 1;
+
 const EMAIL_NOT_VALIDATED = 2;
 
-const VALIDATED_PASSWORD = 0;
 const MINUMUM_CHARACTER = 2
 const PASSWORD_NOT_VALIDATED = 3;
 
-const VALIDATED_NAME = 0;
 const NAME_NOT_VALIDATED = 3;
 
-const VALIDATED_PHONE = 0;
 const PHONE_NOT_VALIDATED = 3;
+
+const BIRTHDATE_NOT_VALIDATED = 2;
 
 /**
  * Validates a email
@@ -31,7 +33,7 @@ export function validationEmail(email: string) {
     const emailRegex = /^[a-zA-Z0-9]+@(?:[a-zA-Z0-9]+\.)+[A-Za-z]+$/;
 
     if (emailRegex.test(String(email).toLowerCase())) {
-        return VALIDATED_EMAIL;
+        return VALIDATED;
     }
     else {
         return EMAIL_NOT_VALIDATED;
@@ -64,7 +66,7 @@ export function validationPassword(password: string) {
         return PASSWORD_NOT_VALIDATED;
     }
     else {
-        return VALIDATED_PASSWORD;
+        return VALIDATED;
     }
 
 }
@@ -78,7 +80,7 @@ export function validationName (name: string) {
     const nameRegex = /^[a-zA-Z]+ [a-zA-Z]+$/;
 
     if (nameRegex.test(String(name).toLowerCase())){
-        return VALIDATED_NAME;
+        return VALIDATED;
     }
     else {
         return NAME_NOT_VALIDATED;
@@ -91,13 +93,29 @@ export function validationPhone (phone: string) {
         return EMPTY_FIELD
     }
 
-    const phoneRegex = /^(?:[12][1-9]9[2-9]|[3-9][1-9][5-9])[0-9]{7}$/;
+    const phoneRegex = /^\([1-9]{2}\) (?:[2-8]|9[1-9])[0-9]{3}\-[0-9]{4}$/;
 
     if (phoneRegex.test(String(phone).toLowerCase())) {
-        return VALIDATED_PHONE;
+        return VALIDATED;
     }
     else {
         return PHONE_NOT_VALIDATED;
+    }
+}
+
+export function validationBirthDate (birthDate: string) {
+
+    if (birthDate.length === 0) {
+        return EMPTY_FIELD;
+    }
+
+    const birthDateRegex = /^(19|20)\d\d([- /.])(0[1-9]|1[012])\2(0[1-9]|[12][0-9]|3[01])$/;
+
+    if (birthDateRegex.test(String(birthDate).toLowerCase())) {
+        return VALIDATED;
+    }
+    else {
+        return BIRTHDATE_NOT_VALIDATED;
     }
 }
 
