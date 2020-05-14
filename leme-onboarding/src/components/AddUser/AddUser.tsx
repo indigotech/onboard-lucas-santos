@@ -1,14 +1,8 @@
 import React from 'react';
 import './AddUser.css';
 import {errorAddUser} from '../GraphQL/Validation';
+import {AddUserState, mutationUser} from '../GraphQL/createUser';
 
-export interface AddUserState {
-    name: string;
-    email: string;
-    phone: string;
-    birthDate: string;
-    password: string;
-}
 
 export class AddUser extends React.Component<{},AddUserState> {
     constructor (props: any) {
@@ -30,10 +24,17 @@ export class AddUser extends React.Component<{},AddUserState> {
         } as Pick<AddUserState, keyof AddUserState>);
     };
 
-    private handleButtomClick =  () => {
+    private handleButtomClick = async () => {
         
-        errorAddUser(this.state.name, this.state.email, this.state.phone, this.state.birthDate, this.state.password)
-
+        try{ 
+            const result = errorAddUser(this.state.name, this.state.email, this.state.phone, this.state.birthDate, this.state.password)
+            
+            if (result === true ) {
+                mutationUser(this.state.name, this.state.email, this.state.phone, this.state.birthDate, this.state.password, "user")
+            }
+        } catch (Error) {
+            alert(Error.message)
+        }
     }
     
     render() {

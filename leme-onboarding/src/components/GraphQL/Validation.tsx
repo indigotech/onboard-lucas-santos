@@ -239,7 +239,12 @@ export function errorAddUser (name: string, email: string, phone: string, birthD
         }
     }
 
-    if (message.length != 0)
+    if (message.length === 0) {
+        return true
+    }
+    else {
         alert(message);
+        return false;
+    }
     
 }
