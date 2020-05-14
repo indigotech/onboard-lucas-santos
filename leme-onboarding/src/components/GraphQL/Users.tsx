@@ -2,7 +2,6 @@ import gql from 'graphql-tag';
 import ApolloClient from 'apollo-client';
 import {InMemoryCache} from 'apollo-cache-inmemory';
 import { createHttpLink } from "apollo-link-http";
-import { createBrowserHistory } from 'history';
 
 const USERS_TAQ = gql`
 query UserList($offset: Int!, $limit: Int!) {
@@ -10,6 +9,11 @@ query UserList($offset: Int!, $limit: Int!) {
       nodes{
           name
           email
+      }
+      pageInfo {
+          limit
+          hasNextPage
+          hasPreviousPage
       }
     }
 }`;
@@ -27,6 +31,10 @@ export interface UsersList {
             name: string;
             email: string;
         }[];
+        pageInfo: {
+            limit: number;
+            hasNextPage: boolean;
+            hasPreviousPage: boolean;}
     }
 }
 

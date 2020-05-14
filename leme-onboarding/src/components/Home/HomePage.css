@@ -18,3 +18,21 @@ table thead {
 table tbody {
     text-align: center;   
 }
+
+button {
+    align-items: center;
+    margin: 80px;
+    padding:0.35em 3.2em;
+    border:0.1em solid greenyellow;
+    border-radius:0.6em;
+    font-family:'Roboto',sans-serif;
+    font-size: initial;
+    color:rgb(0, 0, 0);
+    background-color: darkgreen;
+}
+
+div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
