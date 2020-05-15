@@ -2,7 +2,7 @@ import React from 'react';
 import './HomePage.css';
 import {Table} from 'react-bootstrap';
 import {queryUsers} from '../GraphQL/Users';
-import { throws } from 'assert';
+import {history} from '../GraphQL/Authentication';
 
 export interface UsersListState {
     users : {
@@ -50,7 +50,7 @@ export class HomePage extends React.Component<{}, UsersListState> {
 
     private handleNextPage = async () => {
 
-        const nextOffset = this.state.offset + 10
+        const nextOffset = this.state.offset + 10;
 
         await this.query(nextOffset, this.state.limit);
 
@@ -59,15 +59,19 @@ export class HomePage extends React.Component<{}, UsersListState> {
 
     private handlePreviousPage =  async () => {
 
-        const nextOffset = this.state.offset - 10
+        const nextOffset = this.state.offset - 10;
 
         await this.query(nextOffset, this.state.limit);
 
         this.setState({offset: nextOffset});
     }
 
+    private handleAddUser = () => {
+        history.push("/add");
+    }
+
     componentDidMount() {
-        this.query(this.state.offset, this.state.limit)
+        this.query(this.state.offset, this.state.limit);
     }
 
     render () {
@@ -76,6 +80,7 @@ export class HomePage extends React.Component<{}, UsersListState> {
 
         return (
             <h1>
+                <button onClick={this.handleAddUser}>Adicionar um novo usuário</button>
                 <Table striped bordered hover>
                     <thead>
                         <td>Nome</td>
