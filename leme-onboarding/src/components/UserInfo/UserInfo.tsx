@@ -1,5 +1,7 @@
 import React from 'react';
 import {queryUser} from '../GraphQL/getUser';
+import { Grid, Row, Col } from 'react-flexbox-grid';
+import './UserInfo.css'
 
 interface User {
     id: string
@@ -42,10 +44,9 @@ export class UserInfo extends React.Component<{},User> {
             const result  = await queryUser(id)
 
             this.setState ({
-                data: result
+                data: result.user
             })
 
-            alert(this)
         } catch (Error) {
             alert(Error.message)
         }
@@ -57,9 +58,15 @@ export class UserInfo extends React.Component<{},User> {
 
     render() {
         return (
-            <h1>Info Sobre os Usuários
-                <h2>{this.state.data.name}</h2>
-            </h1>
+            <Grid fluid>
+                <Row>
+                    <Col xs={12}>Informações sobre o usuário {this.state.id}</Col>
+                    <Col xs={12}>Nome: {this.state.data.name}</Col>
+                    <Col xs={12}>Email: {this.state.data.email}</Col>
+                    <Col xs={12}>Data de Nascimento: {this.state.data.birthDate}</Col>
+                    <Col xs={12}>Telefone: {this.state.data.phone}</Col>
+                </Row>
+            </Grid>
         );
     }
 }

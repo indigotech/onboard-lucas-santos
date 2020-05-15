@@ -1,5 +1,3 @@
-import { realpathSync } from "fs";
-
 const VALIDATED = 0;
 const EMPTY_FIELD = 1;
 

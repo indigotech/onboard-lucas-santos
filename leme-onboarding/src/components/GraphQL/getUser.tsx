@@ -3,14 +3,13 @@ import ApolloClient from 'apollo-client';
 import {InMemoryCache} from 'apollo-cache-inmemory';
 import { createHttpLink } from "apollo-link-http";
 
-const GETUSER = gql`query user($id : ID!) {
+const GETUSER = gql`
+query user($id : ID!) {
     user( id : $id){
-        id
         name
+        email
         phone
         birthDate
-        email
-        role
     }
 }`;
 
@@ -27,11 +26,13 @@ export const client = new ApolloClient({
 })
 
 export interface UserInfo {
-    name: string;
-    email: string;
-    phone: string;
-    birthDate: string;
-    password: string;
+        user:{  
+            name: string;
+            email: string;
+            phone: string;
+            birthDate: string;
+            password: string;
+        }
 }
 
 
@@ -40,6 +41,5 @@ export async function queryUser(id: string) {
         query: GETUSER,
         variables:  { id }
     })
-
     return result.data;
 }
