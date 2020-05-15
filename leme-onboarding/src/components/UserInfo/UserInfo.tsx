@@ -24,8 +24,6 @@ export class UserInfo extends React.Component<{},User> {
 
     constructor (props: any) {
         super (props)
-
-
         
         this.state = {
             id: getUserId(window.location.href),

@@ -206,7 +206,7 @@ export function errorAddUser (name: string, email: string, phone: string, birthD
         message = message + "Telefone Vazio\n";
     } 
     else {
-        message = message + "Telefone incorreto, preecha: (xx) xxxx-xxxx\n";
+        message = message + "Telefone incorreto: DD9XXXYYYY\n";
     }
 
     // Birth Date messages
