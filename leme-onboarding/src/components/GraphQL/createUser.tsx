@@ -11,7 +11,6 @@ mutation createUser($data : UserInputType!) {
         phone
         birthDate
         email
-        role
     }
 }
 `;
@@ -29,6 +28,7 @@ export interface AddUserState {
     phone: string;
     birthDate: string;
     password: string;
+    role: string;
 }
 
 export const client = new ApolloClient({
@@ -36,13 +36,26 @@ export const client = new ApolloClient({
     cache: new InMemoryCache()
 })
 
-export async function mutationUser (name: string, email: string, phone: string, birthDate: string, password:string, role: string) {
+export async function mutationUser (user: AddUserState) {
+
+    const name = user.name;
+    const email = user.email;
+    const phone = user.phone;
+    const birthDate = user.birthDate;
+    const password = user.password
+    const role = user.role;
+
     const result = await client.mutate<AddUserState>({
         mutation: CREATE,
         variables: { 
-            data: {
-                name, email, phone, birthDate, password, role
-            }
+            data:{
+                name,
+                email,
+                phone,
+                birthDate,
+                password,
+                role,
+            } 
         }
     })
 
