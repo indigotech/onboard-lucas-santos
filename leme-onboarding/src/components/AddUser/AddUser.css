@@ -1,0 +1,17 @@
+label {
+    font-size: medium;
+}
+
+input { 
+    border:0.1em solid black;
+    border-radius:0.6em;
+    margin: 10px;
+    padding:0.35em 2.2em;
+}
+
+select {
+    border:0.1em solid black;
+    border-radius:0.6em;
+    margin: 10px;
+    padding:0.35em 2.2em;
+}

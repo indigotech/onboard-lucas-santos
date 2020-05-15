@@ -2,6 +2,8 @@ import React from 'react';
 import { errorAddUser } from '../GraphQL/Validation';
 import { AddUserState, mutationUser } from '../GraphQL/createUser';
 import { createBrowserHistory } from 'history';
+import { Grid, Row, Col } from 'react-flexbox-grid';
+import './AddUser.css'
 
 
 export const history = createBrowserHistory({forceRefresh:true});
@@ -55,29 +57,43 @@ export class AddUser extends React.Component<{}, AddUserState> {
     render() {
         return (
             <h1>
-                <h2>Adicionar Usuário</h2>
-                <label >Nome:</label>
-                <input type="text" name="name" onChange={this.handleChange} />
-                <br />
-                <label>Email:</label>
-                <input type="text" name="email" onChange={this.handleChange} />
-                <br />
-                <label>Telefone:</label>
-                <input type="text" name="phone" onChange={this.handleChange} />
-                <br />
-                <label>Data de Nascimento:</label>
-                <input type="text" name="birthDate" onChange={this.handleChange} />
-                <br />
-                <label>Senha:</label>
-                <input type="password" name="password" onChange={this.handleChange} />
-                <br />
-                <label>Cargo:</label>
-                <select name="role" onChange={this.handleChangeSelect}>
-                    <option value={"user"}>User</option>
-                    <option value={"admin"}>Admin</option>
-                </select>
-                <br />
-                <button onClick={this.handleButtonClick}>Adicionar</button>
+                <Grid>
+                    <Row>
+                        <Col xs={12}>
+                            <h2>Adicionar Usuário</h2>
+                        </Col>
+                        <Col xs={3}>
+                            <label >Nome:</label>
+                            <input type="text" name="name" onChange={this.handleChange} />
+                        </Col>
+                        <Col xs={3}>
+                            <label>Email:</label>
+                            <input type="text" name="email" onChange={this.handleChange} />
+                        </Col>
+                        <Col xs={3}>
+                            <label>Telefone:</label>
+                            <input type="text" name="phone" onChange={this.handleChange} />
+                         </Col>
+                         <Col xs={3}>
+                            <label>Data de Nascimento:</label>
+                            <input type="text" name="birthDate" onChange={this.handleChange} />
+                        </Col>
+                        <Col xs={3}>
+                            <label>Senha:</label>
+                            <input type="password" name="password" onChange={this.handleChange} />
+                        </Col>
+                        <Col xs={3}>
+                            <label>Cargo:</label>
+                            <select name="role" onChange={this.handleChangeSelect}>
+                                <option value={"user"}>Usuário</option>
+                                <option value={"admin"}>Administrador</option>
+                            </select>
+                        </Col>
+                        <Col xs={12}>
+                            <button onClick={this.handleButtonClick}>Adicionar</button>
+                        </Col>
+                    </Row>
+                </Grid>
             </h1>
         )
     }

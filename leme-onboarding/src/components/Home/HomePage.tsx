@@ -3,6 +3,7 @@ import './HomePage.css';
 import {Table} from 'react-bootstrap';
 import {queryUsers} from '../GraphQL/Users';
 import {history} from '../GraphQL/Authentication';
+import { Grid, Row, Col } from 'react-flexbox-grid';
 
 export interface UsersListState {
     users : {
@@ -82,17 +83,16 @@ export class HomePage extends React.Component<{}, UsersListState> {
 
         return (
             <h1>
-                <button onClick={this.handleAddUser}>Adicionar um novo usuário</button>
-                <Table striped bordered hover>
-                    <thead>
-                        <td>Nome</td>
-                        <br/>
-                        <td>Email</td>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            {users.map(function(item) {
+                <Grid>
+                    <Row>
+                        <Col xs={12}>
+                            <button onClick={this.handleAddUser}>Adicionar um novo usuário</button>
+                        </Col>
+                        <Col xs={6}>Nome</Col>
+                        <Col xs={6}>Email</Col>
+                            {users.map(function(item){
                                 const userPath: string = "user/" + item.id;
+<<<<<<< HEAD
                                         return( 
                                             <td>
                                             <a href={userPath}>
@@ -116,6 +116,16 @@ export class HomePage extends React.Component<{}, UsersListState> {
                     <button onClick={this.handlePreviousPage} disabled={!this.state.hasPreviosPage}>Anterior</button>
                     <button onClick={this.handleNextPage}disabled={!this.state.hasNextPage} >Próxima</button>
                 </div>
+=======
+                                return( 
+                                <Col xs={12}>{item.name} {item.email}</Col>
+                                )
+                            })}
+                            <button onClick={this.handlePreviousPage} disabled={!this.state.hasPreviosPage}>Anterior</button>
+                            <button onClick={this.handleNextPage}disabled={!this.state.hasNextPage} >Próxima</button>
+                    </Row>
+                </Grid>
+>>>>>>> 844e289... Add grid
             </h1>
         
         );
