@@ -61,15 +61,23 @@ export class UserInfo extends React.Component<{},User> {
 
     render() {
         return (
-            <Grid fluid>
-                <Row>
-                    <Col xs={12}>Informações sobre o usuário {this.state.id}</Col>
-                    <Col xs={12}>Nome: {this.state.data.name}</Col>
-                    <Col xs={12}>Email: {this.state.data.email}</Col>
-                    <Col xs={12}>Data de Nascimento: {this.state.data.birthDate}</Col>
-                    <Col xs={12}>Telefone: {this.state.data.phone}</Col>
-                </Row>
-            </Grid>
+                <h1>
+                    <Row>
+                        <Col xs={12}>Informações sobre o usuário {this.state.id}</Col>
+                    </Row>
+                    <Row>
+                        <Col xs={12}>Nome: {this.state.data.name}</Col>
+                    </Row>
+                    <Row>
+                        <Col xs={12}>Email: {this.state.data.email}</Col>
+                    </Row>
+                    <Row>
+                        <Col xs={12}>Data de Nascimento: {this.state.data.birthDate}</Col>
+                    </Row> 
+                    <Row>
+                        <Col xs={12}>Telefone: {this.state.data.phone}</Col>
+                    </Row>
+                </h1>
         );
     }
 }

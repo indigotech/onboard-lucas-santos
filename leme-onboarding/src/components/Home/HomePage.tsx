@@ -96,7 +96,7 @@ export class HomePage extends React.Component<{}, UsersListState> {
                         {users.map(function(item){
                             const userPath: string = "user/" + item.id;
                             return( 
-                                <Row>
+                                <Row between="xs">
                                     <Col xs={2}>
                                         <a href={userPath}>{item.id}</a>
                                     </Col>
@@ -105,8 +105,12 @@ export class HomePage extends React.Component<{}, UsersListState> {
                                 </Row>
                             )
                         })}
-                        <button onClick={this.handlePreviousPage} disabled={!this.state.hasPreviosPage}>Anterior</button>
-                        <button onClick={this.handleNextPage}disabled={!this.state.hasNextPage} >Próxima</button>
+                    <Row>
+                        <Col>
+                            <button onClick={this.handlePreviousPage} disabled={!this.state.hasPreviosPage}>Anterior</button>
+                            <button onClick={this.handleNextPage}disabled={!this.state.hasNextPage} >Próxima</button>
+                        </Col>
+                    </Row>
             </h1>
         
         );
