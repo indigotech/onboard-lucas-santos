@@ -4,6 +4,9 @@ import { AddUserState, mutationUser } from '../GraphQL/createUser';
 import { createBrowserHistory } from 'history';
 import { Grid, Row, Col } from 'react-flexbox-grid';
 import './AddUser.css'
+import {Form} from '../Components/Form';
+import {Button} from '../Components/Button';
+import {Select} from '../Components/Select'
 
 
 export const history = createBrowserHistory({forceRefresh:true});
@@ -64,33 +67,30 @@ export class AddUser extends React.Component<{}, AddUserState> {
                         </Col>
                         <Col xs={3}>
                             <label >Nome:</label>
-                            <input type="text" name="name" onChange={this.handleChange} />
+                            <Form type="text" name="name" onChangeFunction={this.handleChange} />
                         </Col>
                         <Col xs={3}>
                             <label>Email:</label>
-                            <input type="text" name="email" onChange={this.handleChange} />
+                            <Form type="text" name="email" onChangeFunction={this.handleChange} />
                         </Col>
                         <Col xs={3}>
                             <label>Telefone:</label>
-                            <input type="text" name="phone" onChange={this.handleChange} />
+                            <Form type="text" name="phone" onChangeFunction={this.handleChange} />
                          </Col>
                          <Col xs={3}>
                             <label>Data de Nascimento:</label>
-                            <input type="text" name="birthDate" onChange={this.handleChange} />
+                            <Form type="text" name="birthDate" onChangeFunction={this.handleChange} />
                         </Col>
                         <Col xs={3}>
                             <label>Senha:</label>
-                            <input type="password" name="password" onChange={this.handleChange} />
+                            <Form type="password" name="password" onChangeFunction={this.handleChange} />
                         </Col>
                         <Col xs={3}>
                             <label>Cargo:</label>
-                            <select name="role" onChange={this.handleChangeSelect}>
-                                <option value={"user"}>Usuário</option>
-                                <option value={"admin"}>Administrador</option>
-                            </select>
+                            <Select name="role" onChangeFunction={this.handleChangeSelect} values={["user", "admin"]}></Select>
                         </Col>
                         <Col xs={12}>
-                            <button onClick={this.handleButtonClick}>Adicionar</button>
+                            <Button title="Adicionar" onClickFunction={this.handleButtonClick}/>
                         </Col>
                     </Row>
                 </Grid>
