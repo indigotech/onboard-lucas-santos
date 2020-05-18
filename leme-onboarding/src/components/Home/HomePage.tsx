@@ -83,49 +83,30 @@ export class HomePage extends React.Component<{}, UsersListState> {
 
         return (
             <h1>
-                <Grid>
-                    <Row>
-                        <Col xs={12}>
-                            <button onClick={this.handleAddUser}>Adicionar um novo usuário</button>
-                        </Col>
-                        <Col xs={6}>Nome</Col>
-                        <Col xs={6}>Email</Col>
-                            {users.map(function(item){
-                                const userPath: string = "user/" + item.id;
-<<<<<<< HEAD
-                                        return( 
-                                            <td>
-                                            <a href={userPath}>
-                                            {item.name}
-                                            </a>
-                                            </td>
-                                        )
-                                })  
-                             }
-                        </tr>
-                        <th> </th>
-                            <tr>
-                                {users.map(function(item) {
-                                        return <td>{item.email}</td>
-                                    })  
-                                }
-                            </tr>
-                    </tbody>
-                </Table>
-                <div>
-                    <button onClick={this.handlePreviousPage} disabled={!this.state.hasPreviosPage}>Anterior</button>
-                    <button onClick={this.handleNextPage}disabled={!this.state.hasNextPage} >Próxima</button>
-                </div>
-=======
-                                return( 
-                                <Col xs={12}>{item.name} {item.email}</Col>
-                                )
-                            })}
-                            <button onClick={this.handlePreviousPage} disabled={!this.state.hasPreviosPage}>Anterior</button>
-                            <button onClick={this.handleNextPage}disabled={!this.state.hasNextPage} >Próxima</button>
-                    </Row>
-                </Grid>
->>>>>>> 844e289... Add grid
+                <Row>
+                    <Col xs={12}>
+                        <button onClick={this.handleAddUser}>Adicionar um novo usuário</button>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col xs={2}>ID</Col>
+                    <Col xs={5}>Nome</Col>
+                    <Col xs={5}>Email</Col>
+                </Row>
+                        {users.map(function(item){
+                            const userPath: string = "user/" + item.id;
+                            return( 
+                                <Row>
+                                    <Col xs={2}>
+                                        <a href={userPath}>{item.id}</a>
+                                    </Col>
+                                    <Col xs={5}>{item.name}</Col>
+                                    <Col xs={5}>{item.email}</Col>
+                                </Row>
+                            )
+                        })}
+                        <button onClick={this.handlePreviousPage} disabled={!this.state.hasPreviosPage}>Anterior</button>
+                        <button onClick={this.handleNextPage}disabled={!this.state.hasNextPage} >Próxima</button>
             </h1>
         
         );
