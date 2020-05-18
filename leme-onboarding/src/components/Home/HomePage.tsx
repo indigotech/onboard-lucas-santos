@@ -95,9 +95,9 @@ export class HomePage extends React.Component<{}, UsersListState> {
                                 const userPath: string = "user/" + item.id;
                                         return( 
                                             <td>
-                                                <a href={userPath}>
-                                                {item.name}
-                                                </a>
+                                            <a href={userPath}>
+                                            {item.name}
+                                            </a>
                                             </td>
                                         )
                                 })  

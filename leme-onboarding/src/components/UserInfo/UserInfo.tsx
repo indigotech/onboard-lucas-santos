@@ -2,6 +2,7 @@ import React from 'react';
 import {queryUser} from '../GraphQL/getUser';
 import { Grid, Row, Col } from 'react-flexbox-grid';
 import './UserInfo.css'
+import { AlertHeading } from 'react-bootstrap/Alert';
 
 interface User {
     id: string
@@ -15,16 +16,20 @@ interface User {
 }
 
 function getUserId (url: string){
-    const index: number = url.indexOf("/user");
 
-    return url.slice(index + 6);
+    const splitedUrl = url.split("/")
+
+    // id is the last element of the splitted url.
+    const id: string = String(splitedUrl.pop())
+
+    return id;
 }
 
 export class UserInfo extends React.Component<{},User> {
 
     constructor (props: any) {
         super (props)
-        
+
         this.state = {
             id: getUserId(window.location.href),
             data: {
@@ -37,7 +42,7 @@ export class UserInfo extends React.Component<{},User> {
         }
     }
 
-    async query (id: string) {
+    private async query (id: string) {
         try {
             const result  = await queryUser(id)
 

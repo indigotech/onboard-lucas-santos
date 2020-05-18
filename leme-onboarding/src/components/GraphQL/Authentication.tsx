@@ -1,8 +1,6 @@
 import gql from 'graphql-tag';
-import ApolloClient from 'apollo-client';
-import {InMemoryCache} from 'apollo-cache-inmemory';
-import { createHttpLink } from "apollo-link-http";
 import { createBrowserHistory } from 'history';
+import {client} from './Client';
 
 
 export const LOGIN_TAQ = gql`
@@ -18,14 +16,6 @@ mutation Login($data:LoginInputType!){
   }
 `;
 
-const httpLink = createHttpLink({
-    uri: 'https://tq-template-server-sample.herokuapp.com/graphql'
-})
-
-const client = new ApolloClient({
-    link: httpLink,
-    cache: new InMemoryCache()
-})
 
 export const history = createBrowserHistory({forceRefresh:true});
 

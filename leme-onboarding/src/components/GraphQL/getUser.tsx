@@ -1,7 +1,5 @@
 import gql from 'graphql-tag';
-import ApolloClient from 'apollo-client';
-import {InMemoryCache} from 'apollo-cache-inmemory';
-import { createHttpLink } from "apollo-link-http";
+import {client} from './Client';
 
 const GETUSER = gql`
 query user($id : ID!) {
@@ -12,18 +10,6 @@ query user($id : ID!) {
         birthDate
     }
 }`;
-
-const httpLink = createHttpLink({
-    uri: 'https://tq-template-server-sample.herokuapp.com/graphql',
-    headers: {
-        authorization: localStorage.getItem("TOKEN")
-    }
-})
-
-export const client = new ApolloClient({
-    link: httpLink,
-    cache: new InMemoryCache()
-})
 
 export interface UserInfo {
         user:{  
