@@ -1,7 +1,5 @@
 import gql from 'graphql-tag';
-import ApolloClient from 'apollo-client';
-import {InMemoryCache} from 'apollo-cache-inmemory';
-import { createHttpLink } from "apollo-link-http";
+import {client} from './Client';
 
 const CREATE = gql`
 mutation createUser($data : UserInputType!) {
@@ -15,13 +13,6 @@ mutation createUser($data : UserInputType!) {
 }
 `;
 
-const httpLink = createHttpLink({
-    uri: 'https://tq-template-server-sample.herokuapp.com/graphql',
-    headers: {
-        authorization: localStorage.getItem("TOKEN")
-    }
-})
-
 export interface AddUserState {
     name: string;
     email: string;
@@ -31,10 +22,6 @@ export interface AddUserState {
     role: string;
 }
 
-export const client = new ApolloClient({
-    link: httpLink,
-    cache: new InMemoryCache()
-})
 
 export async function mutationUser (user: AddUserState) {
 

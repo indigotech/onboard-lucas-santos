@@ -1,5 +1,3 @@
-import { realpathSync } from "fs";
-
 const VALIDATED = 0;
 const EMPTY_FIELD = 1;
 
@@ -71,6 +69,15 @@ export function validationPassword(password: string) {
 
 }
 
+/**
+ * Validates name, which needs to have name and last name
+ * 
+ * @param name 
+ * @return {number}
+ * - 0 Validated name
+ * - 1 Empty
+ * - 2 Name not validated
+ */
 export function validationName (name: string) {
     
     if (name.length === 0) {
@@ -87,6 +94,15 @@ export function validationName (name: string) {
     }
 }
 
+/**
+ * Validates a phone number
+ * 
+ * @param {string} phone 
+ * @return {number}
+ * - 0 Validated phone
+ * - 1 Empty
+ * - 2 Phone not validated
+ */
 export function validationPhone (phone: string) {
     
     if (phone.length === 0) {
@@ -103,6 +119,16 @@ export function validationPhone (phone: string) {
     }
 }
 
+
+/**
+ * Validates a birth date (yyyy-mm-dd)
+ * @param {string} birthDate
+ * @return {number}
+ * - 0 Validated Birth date
+ * - 1 Empty
+ * - 2 Birth date not validated
+ * 
+ */
 export function validationBirthDate (birthDate: string) {
 
     if (birthDate.length === 0) {
@@ -166,6 +192,17 @@ export function errorAlert(emailError: number, passwordError: number){
     }
 }
 
+/**
+ * Validates an add user form
+ * 
+ * @param name 
+ * @param email 
+ * @param phone 
+ * @param birthDate 
+ * @param password
+ * @return {boolean}
+ */
+
 export function errorAddUser (name: string, email: string, phone: string, birthDate: string, password:string) {
     
     let message = "";
@@ -208,7 +245,7 @@ export function errorAddUser (name: string, email: string, phone: string, birthD
         message = message + "Telefone Vazio\n";
     } 
     else {
-        message = message + "Telefone incorreto, preecha: (xx) xxxx-xxxx\n";
+        message = message + "Telefone incorreto: DD9XXXYYYY\n";
     }
 
     // Birth Date messages

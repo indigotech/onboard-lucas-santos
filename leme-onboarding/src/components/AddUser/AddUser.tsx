@@ -1,5 +1,4 @@
 import React from 'react';
-import './AddUser.css';
 import { errorAddUser } from '../GraphQL/Validation';
 import { AddUserState, mutationUser } from '../GraphQL/createUser';
 import { createBrowserHistory } from 'history';
@@ -57,7 +56,7 @@ export class AddUser extends React.Component<{}, AddUserState> {
         return (
             <h1>
                 <h2>Adicionar Usuário</h2>
-                <label>Nome:</label>
+                <label >Nome:</label>
                 <input type="text" name="name" onChange={this.handleChange} />
                 <br />
                 <label>Email:</label>
