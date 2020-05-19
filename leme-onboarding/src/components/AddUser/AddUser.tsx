@@ -39,7 +39,7 @@ export class AddUser extends React.Component<{}, AddUserState> {
         } as Pick<AddUserState, keyof AddUserState>);
     };
 
-    private handleButtonClick = async () => {
+    private handleButtonAdd = async () => {
 
         try {
             const result = errorAddUser(this.state.name, this.state.email, this.state.phone, this.state.birthDate, this.state.password)
@@ -54,6 +54,10 @@ export class AddUser extends React.Component<{}, AddUserState> {
         } catch (Error) {
             alert(Error.message)
         }
+    }
+
+    private handleButtonBack = () => {
+        history.push("/home")
     }
 
     render() {
@@ -88,8 +92,11 @@ export class AddUser extends React.Component<{}, AddUserState> {
                             <label>Cargo:</label>
                             <Select name="role" onChangeFunction={this.handleChangeSelect} values={["user", "admin"]}></Select>
                         </Col>
-                        <Col xs={12}>
-                            <Button title="Adicionar" onClickFunction={this.handleButtonClick}/>
+                        <Col xs={6}>
+                            <Button title="Voltar" onClickFunction={this.handleButtonBack}/>
+                        </Col>
+                        <Col xs={6}>
+                            <Button title="Adicionar" onClickFunction={this.handleButtonAdd}/>
                         </Col>
                     </Row>
                 </Grid>

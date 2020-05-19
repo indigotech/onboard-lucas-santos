@@ -2,7 +2,10 @@ import React from 'react';
 import {queryUser} from '../GraphQL/getUser';
 import { Row, Col } from 'react-flexbox-grid';
 import './UserInfo.css';
-import {Label} from '../Components/Label';
+import { Button } from '../Components/Button';
+import { createBrowserHistory } from 'history';
+
+export const history = createBrowserHistory({forceRefresh:true});
 
 interface User {
     id: string
@@ -59,6 +62,10 @@ export class UserInfo extends React.Component<{},User> {
        this.query(this.state.id)
     }      
 
+    private handleButton = () => {
+        history.push("/home")
+    }
+
     render() {
         return (
                 <h1>
@@ -76,6 +83,9 @@ export class UserInfo extends React.Component<{},User> {
                     </Row> 
                     <Row>
                         <Col xs={12}>Telefone: {this.state.data.phone}</Col>
+                    </Row>
+                    <Row>
+                        <Button title="Voltar" onClickFunction={this.handleButton}/>
                     </Row>
                 </h1>
         );

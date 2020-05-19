@@ -14,13 +14,13 @@ const ButtonStyled = styled.button`
 
 interface buttonState {
     title: string;
-    disable?: boolean;
+    disabled?: boolean;
     onClickFunction: any
 }
 
 interface buttonProps {
     title: string;
-    disable?: boolean;
+    disabled?: boolean;
     onClickFunction: any;
 }
 
@@ -31,7 +31,7 @@ export class Button extends React.Component<buttonProps,buttonState> {
 
         this.state = {
             title: "button",
-            disable: false,
+            disabled: false,
             onClickFunction: null
         }
     }
@@ -39,14 +39,14 @@ export class Button extends React.Component<buttonProps,buttonState> {
     componentDidMount() {
         this.setState({
             title: this.props.title,
-            disable: this.props.disable,
+            disabled: this.props.disabled,
             onClickFunction: this.props.onClickFunction
         })
     }
 
     render () {
         return (
-            <ButtonStyled onClick={this.state.onClickFunction} disabled={this.state.disable}>{this.state.title}</ButtonStyled>
+            <ButtonStyled onClick={this.state.onClickFunction} disabled={this.state.disabled}>{this.state.title}</ButtonStyled>
         );
     }
 }

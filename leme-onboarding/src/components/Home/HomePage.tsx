@@ -1,9 +1,8 @@
 import React from 'react';
 import './HomePage.css';
-import {Table} from 'react-bootstrap';
 import {queryUsers} from '../GraphQL/Users';
 import {history} from '../GraphQL/Authentication';
-import { Grid, Row, Col } from 'react-flexbox-grid';
+import { Row, Col } from 'react-flexbox-grid';
 import { Button } from '../Components/Button';
 
 export interface UsersListState {
@@ -108,8 +107,8 @@ export class HomePage extends React.Component<{}, UsersListState> {
                         })}
                     <Row>
                         <Col>
-                            <Button title="Anterior" onClickFunction={this.handlePreviousPage} disable={!this.state.hasPreviosPage}>Anterior</Button>
-                            <Button title="Próxima" onClickFunction={this.handleNextPage} disable={!this.state.hasNextPage} >Próxima</Button>
+                            <Button title="Anterior" onClickFunction={this.handlePreviousPage} disabled={!this.state.hasPreviosPage}/>
+                            <Button title="Próxima" onClickFunction={this.handleNextPage} disabled={!this.state.hasNextPage} />
                         </Col>
                     </Row>
             </h1>
