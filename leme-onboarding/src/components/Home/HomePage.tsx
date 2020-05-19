@@ -4,6 +4,7 @@ import {Table} from 'react-bootstrap';
 import {queryUsers} from '../GraphQL/Users';
 import {history} from '../GraphQL/Authentication';
 import { Grid, Row, Col } from 'react-flexbox-grid';
+import { Button } from '../Components/Button';
 
 export interface UsersListState {
     users : {
@@ -85,7 +86,7 @@ export class HomePage extends React.Component<{}, UsersListState> {
             <h1>
                 <Row>
                     <Col xs={12}>
-                        <button onClick={this.handleAddUser}>Adicionar um novo usuário</button>
+                        <Button title="Adicionar um novo usuário" onClickFunction={this.handleAddUser}/>
                     </Col>
                 </Row>
                 <Row>
@@ -107,8 +108,8 @@ export class HomePage extends React.Component<{}, UsersListState> {
                         })}
                     <Row>
                         <Col>
-                            <button onClick={this.handlePreviousPage} disabled={!this.state.hasPreviosPage}>Anterior</button>
-                            <button onClick={this.handleNextPage}disabled={!this.state.hasNextPage} >Próxima</button>
+                            <Button title="Anterior" onClickFunction={this.handlePreviousPage} disable={!this.state.hasPreviosPage}>Anterior</Button>
+                            <Button title="Próxima" onClickFunction={this.handleNextPage} disable={!this.state.hasNextPage} >Próxima</Button>
                         </Col>
                     </Row>
             </h1>

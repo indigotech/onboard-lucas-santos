@@ -1,8 +1,8 @@
 import React from 'react';
 import {queryUser} from '../GraphQL/getUser';
-import { Grid, Row, Col } from 'react-flexbox-grid';
-import './UserInfo.css'
-import { AlertHeading } from 'react-bootstrap/Alert';
+import { Row, Col } from 'react-flexbox-grid';
+import './UserInfo.css';
+import {Label} from '../Components/Label';
 
 interface User {
     id: string

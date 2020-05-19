@@ -1,5 +1,14 @@
 import React from 'react';
-import { queryUsers } from '../GraphQL/Users';
+import styled from 'styled-components';
+
+const SelectStyled = styled.select`
+    color: darkgreen;
+    font-size: 1em;
+    border: 3px solid darkgreen;
+    border-radius: 15px;
+    text-align:center;
+
+`;
 
 interface SelectState {
     name: string;
@@ -41,13 +50,13 @@ export class Select extends React.Component<SelectProps, SelectState> {
 
         return (
             <div>
-                <select name={this.state.name} onChange={this.state.onChangeFunction}>
+                <SelectStyled name={this.state.name} onChange={this.state.onChangeFunction}>
                     {values.map(function(item){
                         return (
                         <option value={item}>{item}</option>
                         )
                     })}
-                </select>
+                </SelectStyled>
             </div>
         );
     }

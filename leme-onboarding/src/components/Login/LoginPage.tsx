@@ -6,6 +6,7 @@ import {Button} from '../Components/Button';
 import { Row, Col } from 'react-flexbox-grid';
 import {Welcome} from './Welcome';
 import {Form} from '../Components/Form';
+import {Label} from '../Components/Label'
 
 export interface LoginPageState {
     email: string;
@@ -62,13 +63,13 @@ export class Login extends React.Component<{}, LoginPageState> {
                             <Welcome/>
                         </Col>
                         <Col xs={12}>
-                            E-mail:
-                            <Form type="text" name="email" onChangeFunction={this.handleChange} />
+                            <Label title="Email"/>
+                            <Form type="text" name="email" placeHolder="Insira o email" onChangeFunction={this.handleChange} />
                         </Col>
                     <Row>
                         <Col xs={12}>
-                        Senha:
-                        <Form type="password" name="password" onChangeFunction={this.handleChange} />
+                        <Label title="Senha"/>
+                        <Form type="password" name="password" placeHolder="Insira a senha" onChangeFunction={this.handleChange} />
                         </Col>
                     </Row>
                         <Col xs={12}>

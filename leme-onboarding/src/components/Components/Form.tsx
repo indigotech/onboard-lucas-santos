@@ -8,10 +8,11 @@ const Input = styled.input.attrs(props => ({
     // or we can define dynamic ones
     size: props.size || "0.1em",
   }))`
-    color: lightgree;
+    color: darkgreen;
     font-size: 1em;
     border: 3px solid darkgreen;
     border-radius: 15px;
+    text-align:center;
   
     /* here we use the dynamically computed prop */
     margin: ${props => props.size};
@@ -21,12 +22,14 @@ const Input = styled.input.attrs(props => ({
 interface FormState{
     type: string;
     name: string;
+    placeHolder?: string;
     onChangeFunction: any
 }
 
 interface FormProps {
     type: string;
     name: string;
+    placeHolder?: string;
     onChangeFunction: any
 }
 
@@ -38,6 +41,7 @@ export class Form extends React.Component<FormProps, FormState> {
         this.state = {
             type: "",
             name: "",
+            placeHolder: "Insert value",
             onChangeFunction: null
         }
     }
@@ -53,7 +57,7 @@ export class Form extends React.Component<FormProps, FormState> {
     render () {
         return (
             <div>
-                <Input type={this.state.type} name={this.state.name} onChange={this.state.onChangeFunction}/>
+                <Input type={this.state.type} name={this.state.name} placeHolder={this.state.placeHolder} onChange={this.state.onChangeFunction}/>
             </div>
         );
     }

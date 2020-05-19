@@ -1,12 +1,26 @@
 import React from 'react';
+import styled from 'styled-components';
+
+const ButtonStyled = styled.button`
+  display: inline-block;
+  color: lightgreen;
+  font-size: 1em;
+  margin: 0.7em;
+  padding: 0.1em 3em;
+  border: 2px solid lightgreen;
+  border-radius: px;
+  display: block;
+`;
 
 interface buttonState {
     title: string;
+    disable?: boolean;
     onClickFunction: any
 }
 
 interface buttonProps {
     title: string;
+    disable?: boolean;
     onClickFunction: any;
 }
 
@@ -17,6 +31,7 @@ export class Button extends React.Component<buttonProps,buttonState> {
 
         this.state = {
             title: "button",
+            disable: false,
             onClickFunction: null
         }
     }
@@ -24,13 +39,14 @@ export class Button extends React.Component<buttonProps,buttonState> {
     componentDidMount() {
         this.setState({
             title: this.props.title,
+            disable: this.props.disable,
             onClickFunction: this.props.onClickFunction
         })
     }
 
     render () {
         return (
-            <button onClick={this.state.onClickFunction}>{this.state.title}</button>
+            <ButtonStyled onClick={this.state.onClickFunction} disabled={this.state.disable}>{this.state.title}</ButtonStyled>
         );
     }
 }
