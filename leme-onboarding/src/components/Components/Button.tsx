@@ -44,6 +44,12 @@ export class Button extends React.Component<buttonProps,buttonState> {
         })
     }
 
+    componentWillReceiveProps () {
+        this.setState ({
+            disabled: this.props.disabled
+        })
+    }
+
     render () {
         return (
             <ButtonStyled onClick={this.state.onClickFunction} disabled={this.state.disabled}>{this.state.title}</ButtonStyled>

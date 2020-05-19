@@ -108,7 +108,7 @@ export class HomePage extends React.Component<{}, UsersListState> {
                     <Row>
                         <Col>
                             <Button title="Anterior" onClickFunction={this.handlePreviousPage} disabled={!this.state.hasPreviosPage}/>
-                            <Button title="Próxima" onClickFunction={this.handleNextPage} disabled={!this.state.hasNextPage} />
+                            <Button title="Próxima" onClickFunction={this.handleNextPage} disabled={!this.state.hasNextPage}/>
                         </Col>
                     </Row>
             </h1>
