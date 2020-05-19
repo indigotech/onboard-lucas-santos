@@ -11,7 +11,6 @@ import {Select} from '../Components/Select'
 
 export const history = createBrowserHistory({forceRefresh:true});
 
-
 export class AddUser extends React.Component<{}, AddUserState> {
     constructor(props: any) {
         super(props)

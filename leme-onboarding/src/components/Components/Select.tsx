@@ -1,5 +1,4 @@
 import React from 'react';
-import { stringify } from 'querystring';
 import { queryUsers } from '../GraphQL/Users';
 
 interface SelectState {
@@ -22,7 +21,7 @@ export class Select extends React.Component<SelectProps, SelectState> {
         this.state = {
             name: "",
             onChangeFunction: null,
-            values: ["a"]
+            values: [""]
         }
     }
 

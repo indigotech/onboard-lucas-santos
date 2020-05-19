@@ -27,6 +27,7 @@
     "react-promise-tracker": "^2.1.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
+    "styled-components": "^5.1.0",
     "table": "^5.4.6",
     "typescript": "~3.7.2"
   },
@@ -50,5 +51,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/styled-components": "^5.1.0"
   }
 }

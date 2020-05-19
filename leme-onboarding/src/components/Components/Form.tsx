@@ -1,4 +1,22 @@
 import React from 'react'
+import styled from 'styled-components';
+
+const Input = styled.input.attrs(props => ({
+    // we can define static props
+    type: props.type,
+  
+    // or we can define dynamic ones
+    size: props.size || "0.1em",
+  }))`
+    color: lightgree;
+    font-size: 1em;
+    border: 3px solid darkgreen;
+    border-radius: 15px;
+  
+    /* here we use the dynamically computed prop */
+    margin: ${props => props.size};
+    padding: ${props => props.size};
+  `;
 
 interface FormState{
     type: string;
@@ -35,7 +53,7 @@ export class Form extends React.Component<FormProps, FormState> {
     render () {
         return (
             <div>
-                <input type={this.state.type} name={this.state.name} onChange={this.state.onChangeFunction}/>
+                <Input type={this.state.type} name={this.state.name} onChange={this.state.onChangeFunction}/>
             </div>
         );
     }

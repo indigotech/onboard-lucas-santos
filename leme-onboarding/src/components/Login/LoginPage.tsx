@@ -3,10 +3,9 @@ import './LoginPage.css';
 import {mutateLogin, saveToken} from '../GraphQL/Authentication';
 import {validationEmail, validationPassword, errorAlert } from '../GraphQL/Validation';
 import {Button} from '../Components/Button';
-import { Grid, Row, Col } from 'react-flexbox-grid';
+import { Row, Col } from 'react-flexbox-grid';
 import {Welcome} from './Welcome';
 import {Form} from '../Components/Form';
-
 
 export interface LoginPageState {
     email: string;
@@ -14,6 +13,7 @@ export interface LoginPageState {
 }
 
 export class Login extends React.Component<{}, LoginPageState> {
+    state: any;
 
     constructor(props: any) {
         super(props);
