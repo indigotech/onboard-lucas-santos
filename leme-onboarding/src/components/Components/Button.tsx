@@ -13,9 +13,7 @@ const ButtonStyled = styled.button`
 `;
 
 interface buttonState {
-    title: string;
     disabled?: boolean;
-    onClickFunction: any
 }
 
 interface buttonProps {
@@ -30,17 +28,13 @@ export class Button extends React.Component<buttonProps,buttonState> {
         super(props)
 
         this.state = {
-            title: "button",
             disabled: false,
-            onClickFunction: null
         }
     }
 
     componentDidMount() {
         this.setState({
-            title: this.props.title,
             disabled: this.props.disabled,
-            onClickFunction: this.props.onClickFunction
         })
     }
 
@@ -52,7 +46,7 @@ export class Button extends React.Component<buttonProps,buttonState> {
 
     render () {
         return (
-            <ButtonStyled onClick={this.state.onClickFunction} disabled={this.state.disabled}>{this.state.title}</ButtonStyled>
+            <ButtonStyled onClick={this.props.onClickFunction} disabled={this.state.disabled}>{this.props.title}</ButtonStyled>
         );
     }
 }

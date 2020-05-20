@@ -1,14 +1,8 @@
 import React from 'react';
-import styled from 'styled-components';
-
-const Title = styled.h1`
-  font-size: 1.5em;
-  text-align: center;
-  color: lightgreen;
-`;
+import { H1 } from '../Components/H1';
 
 export class Welcome extends React.Component {
     render() {
-        return <Title>Bem-vindo(a) à Taqtile!</Title>
+        return <H1>Bem-vindo(a) à Taqtile!</H1>
     }
 }

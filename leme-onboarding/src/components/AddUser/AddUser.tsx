@@ -69,28 +69,22 @@ export class AddUser extends React.Component<{}, AddUserState> {
                             <h2>Adicionar Usuário</h2>
                         </Col>
                         <Col xs={6}>
-                            <label >Nome:</label>
-                            <Form type="text" name="name" placeHolder="Insira o nome" onChangeFunction={this.handleChange} />
+                            <Form title="Nome" type="text" name="name" placeHolder="Insira o nome" onChangeFunction={this.handleChange} />
                         </Col>
                         <Col xs={6}>
-                            <label>Email:</label>
-                            <Form type="text" name="email" placeHolder="Insira o email" onChangeFunction={this.handleChange} />
+                            <Form title="Email" type="text" name="email" placeHolder="Insira o email" onChangeFunction={this.handleChange} />
                         </Col>
                         <Col xs={6}>
-                            <label>Telefone:</label>
-                            <Form type="text" name="phone" placeHolder="Insira o DD9XXXXXXXX" onChangeFunction={this.handleChange} />
+                            <Form title="Telefone" type="text" name="phone" placeHolder="Insira o DD9XXXXXXXX" onChangeFunction={this.handleChange} />
                          </Col>
                          <Col xs={6}>
-                            <label>Data de Nascimento:</label>
-                            <Form type="text" name="birthDate" placeHolder="Insira yyyy-mm-dd" onChangeFunction={this.handleChange} />
+                            <Form title="Data de nascimento" type="text" name="birthDate" placeHolder="Insira yyyy-mm-dd" onChangeFunction={this.handleChange} />
                         </Col>
                         <Col xs={6}>
-                            <label>Senha:</label>
-                            <Form type="password" name="password" placeHolder="Insira a senha" onChangeFunction={this.handleChange} />
+                            <Form title="Senha" type="password" name="password" placeHolder="Insira a senha" onChangeFunction={this.handleChange} />
                         </Col>
                         <Col xs={6}>
-                            <label>Cargo:</label>
-                            <Select name="role" onChangeFunction={this.handleChangeSelect} values={["user", "admin"]}></Select>
+                            <Select title="Cargo" name="role" onChangeFunction={this.handleChangeSelect} values={["user", "admin"]}></Select>
                         </Col>
                         <Col xs={6}>
                             <Button title="Voltar" onClickFunction={this.handleButtonBack}/>

@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Label } from './Label';
 
 const SelectStyled = styled.select`
     color: darkgreen;
@@ -17,40 +18,22 @@ interface SelectState {
 }
 
 interface SelectProps {
+    title: string;
     name: string;
     onChangeFunction: any;
     values: string[];
 }
 
-export class Select extends React.Component<SelectProps, SelectState> {
-
-    constructor (props : any) {
-        super(props)
-
-        this.state = {
-            name: "",
-            onChangeFunction: null,
-            values: [""]
-        }
-    }
-
-    componentDidMount () {
-        this.setState({
-            name: this.props.name,
-            onChangeFunction: this.props.onChangeFunction,
-            values: this.props.values
-
-        })
-    }
-
+export class Select extends React.Component<SelectProps, {}> {
 
     render () {
 
-        const {values} = this.state
+        const {values} = this.props
 
         return (
             <div>
-                <SelectStyled name={this.state.name} onChange={this.state.onChangeFunction}>
+                <Label title={this.props.title}/>
+                <SelectStyled name={this.props.name} onChange={this.props.onChangeFunction}>
                     {values.map(function(item){
                         return (
                         <option value={item}>{item}</option>

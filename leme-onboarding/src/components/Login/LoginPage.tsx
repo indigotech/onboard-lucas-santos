@@ -6,7 +6,6 @@ import {Button} from '../Components/Button';
 import { Row, Col } from 'react-flexbox-grid';
 import {Welcome} from './Welcome';
 import {Form} from '../Components/Form';
-import {Label} from '../Components/Label'
 
 export interface LoginPageState {
     email: string;
@@ -14,17 +13,8 @@ export interface LoginPageState {
 }
 
 export class Login extends React.Component<{}, LoginPageState> {
-    state: any;
 
-    constructor(props: any) {
-        super(props);
-
-        this.state = {
-            email: "",
-            password: "",
-        }
-
-    }
+    state = { email: '', password: '' };
 
     private handleChange = (e: React.FormEvent<HTMLInputElement>) => {
         const { name, value } = e.currentTarget;
@@ -33,7 +23,7 @@ export class Login extends React.Component<{}, LoginPageState> {
         } as Pick<LoginPageState, keyof LoginPageState>);
     };
 
-    handleButtomClick = () => {
+    handleButtonClick = () => {
 
         const emailError = validationEmail(this.state.email);
 
@@ -63,17 +53,15 @@ export class Login extends React.Component<{}, LoginPageState> {
                             <Welcome/>
                         </Col>
                         <Col xs={12}>
-                            <Label title="Email"/>
-                            <Form type="text" name="email" placeHolder="Insira o email" onChangeFunction={this.handleChange} />
+                            <Form title="Email" type="text" name="email" placeHolder="Insira o email" onChangeFunction={this.handleChange} />
                         </Col>
                     <Row>
                         <Col xs={12}>
-                        <Label title="Senha"/>
-                        <Form type="password" name="password" placeHolder="Insira a senha" onChangeFunction={this.handleChange} />
+                        <Form title="Senha" type="password" name="password" placeHolder="Insira a senha" onChangeFunction={this.handleChange} />
                         </Col>
                     </Row>
                         <Col xs={12}>
-                        <Button title="Entrar" onClickFunction={this.handleButtomClick}/>
+                        <Button title="Entrar" onClickFunction={this.handleButtonClick}/>
                         </Col>
                     </Row>
                 </h1>

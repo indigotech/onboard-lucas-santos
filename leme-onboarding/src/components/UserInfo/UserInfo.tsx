@@ -1,9 +1,9 @@
 import React from 'react';
 import {queryUser} from '../GraphQL/getUser';
-import { Row, Col } from 'react-flexbox-grid';
 import './UserInfo.css';
 import { Button } from '../Components/Button';
 import { createBrowserHistory } from 'history';
+import {DD, DL, DT} from '../Components/List';
 
 export const history = createBrowserHistory({forceRefresh:true});
 
@@ -69,24 +69,25 @@ export class UserInfo extends React.Component<{},User> {
     render() {
         return (
                 <h1>
-                    <Row>
-                        <Col xs={12}>Informações sobre o usuário {this.state.id}</Col>
-                    </Row>
-                    <Row>
-                        <Col xs={12}>Nome: {this.state.data.name}</Col>
-                    </Row>
-                    <Row>
-                        <Col xs={12}>Email: {this.state.data.email}</Col>
-                    </Row>
-                    <Row>
-                        <Col xs={12}>Data de Nascimento: {this.state.data.birthDate}</Col>
-                    </Row> 
-                    <Row>
-                        <Col xs={12}>Telefone: {this.state.data.phone}</Col>
-                    </Row>
-                    <Row>
+                    <DL>
+
+                        <DT>Informações sobre o usuário {this.state.id}</DT>
+                        <br/>
+                        <DT>Nome</DT>
+                        <DD>{this.state.data.name}</DD>
+
+                        <DT>Email</DT>
+                        <DD>{this.state.data.email}</DD>
+
+                        <DT>Data de Nascimento</DT>
+                        <DD>{this.state.data.birthDate}</DD>
+
+                        <DT>Telefone</DT>
+                        <DD>{this.state.data.phone}</DD>
+
                         <Button title="Voltar" onClickFunction={this.handleButton}/>
-                    </Row>
+
+                    </DL>
                 </h1>
         );
     }

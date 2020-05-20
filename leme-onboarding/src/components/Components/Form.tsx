@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components';
+import { Label } from './Label';
 
 const Input = styled.input.attrs(props => ({
     // we can define static props
@@ -19,45 +20,21 @@ const Input = styled.input.attrs(props => ({
     padding: ${props => props.size};
   `;
 
-interface FormState{
-    type: string;
-    name: string;
-    placeHolder?: string;
-    onChangeFunction: any
-}
-
 interface FormProps {
+    title: string;
     type: string;
     name: string;
     placeHolder?: string;
     onChangeFunction: any
 }
 
-export class Form extends React.Component<FormProps, FormState> {
-
-    constructor (props: any) {
-        super(props)
-
-        this.state = {
-            type: "",
-            name: "",
-            placeHolder: "Insert value",
-            onChangeFunction: null
-        }
-    }
-
-    componentDidMount () {
-        this.setState({
-            type: this.props.type,
-            name: this.props.name,
-            onChangeFunction: this.props.onChangeFunction
-        })
-    }
+export class Form extends React.Component<FormProps, {}> {
 
     render () {
         return (
             <div>
-                <Input type={this.state.type} name={this.state.name} placeHolder={this.state.placeHolder} onChange={this.state.onChangeFunction}/>
+                <Label title={this.props.title}/>
+                <Input type={this.props.type} name={this.props.name} placeHolder={this.props.placeHolder} onChange={this.props.onChangeFunction}/>
             </div>
         );
     }
