@@ -1,8 +1,9 @@
 import React from 'react';
 import './HomePage.css';
-import {Table} from 'react-bootstrap';
 import {queryUsers} from '../GraphQL/Users';
 import {history} from '../GraphQL/Authentication';
+import { Row, Col } from 'react-flexbox-grid';
+import { Button } from '../Components/Button';
 
 export interface UsersListState {
     users : {
@@ -82,40 +83,34 @@ export class HomePage extends React.Component<{}, UsersListState> {
 
         return (
             <h1>
-                <button onClick={this.handleAddUser}>Adicionar um novo usuário</button>
-                <Table striped bordered hover>
-                    <thead>
-                        <td>Nome</td>
-                        <br/>
-                        <td>Email</td>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            {users.map(function(item) {
-                                const userPath: string = "user/" + item.id;
-                                        return( 
-                                            <td>
-                                            <a href={userPath}>
-                                            {item.name}
-                                            </a>
-                                            </td>
-                                        )
-                                })  
-                             }
-                        </tr>
-                        <th> </th>
-                            <tr>
-                                {users.map(function(item) {
-                                        return <td>{item.email}</td>
-                                    })  
-                                }
-                            </tr>
-                    </tbody>
-                </Table>
-                <div>
-                    <button onClick={this.handlePreviousPage} disabled={!this.state.hasPreviosPage}>Anterior</button>
-                    <button onClick={this.handleNextPage}disabled={!this.state.hasNextPage} >Próxima</button>
-                </div>
+                <Row>
+                    <Col xs={12}>
+                        <Button title="Adicionar um novo usuário" onClickFunction={this.handleAddUser}/>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col xs={2}>ID</Col>
+                    <Col xs={5}>Nome</Col>
+                    <Col xs={5}>Email</Col>
+                </Row>
+                        {users.map(function(item){
+                            const userPath: string = "user/" + item.id;
+                            return( 
+                                <Row between="xs">
+                                    <Col xs={2}>
+                                        <a href={userPath}>{item.id}</a>
+                                    </Col>
+                                    <Col xs={5}>{item.name}</Col>
+                                    <Col xs={5}>{item.email}</Col>
+                                </Row>
+                            )
+                        })}
+                    <Row>
+                        <Col>
+                            <Button title="Anterior" onClickFunction={this.handlePreviousPage} disabled={!this.state.hasPreviosPage}/>
+                            <Button title="Próxima" onClickFunction={this.handleNextPage} disabled={!this.state.hasNextPage}/>
+                        </Col>
+                    </Row>
             </h1>
         
         );

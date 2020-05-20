@@ -2,7 +2,11 @@ import * as React from 'react';
 import './LoginPage.css';
 import {mutateLogin, saveToken} from '../GraphQL/Authentication';
 import {validationEmail, validationPassword, errorAlert } from '../GraphQL/Validation';
-
+import {Button} from '../Components/Button';
+import { Row, Col } from 'react-flexbox-grid';
+import {Welcome} from './Welcome';
+import {Form} from '../Components/Form';
+import * as Validate from '../GraphQL/Validation';
 
 export interface LoginPageState {
     email: string;
@@ -11,15 +15,7 @@ export interface LoginPageState {
 
 export class Login extends React.Component<{}, LoginPageState> {
 
-    constructor(props: any) {
-        super(props);
-
-        this.state = {
-            email: "",
-            password: "",
-        }
-
-    }
+    state = { email: '', password: '' };
 
     private handleChange = (e: React.FormEvent<HTMLInputElement>) => {
         const { name, value } = e.currentTarget;
@@ -28,7 +24,7 @@ export class Login extends React.Component<{}, LoginPageState> {
         } as Pick<LoginPageState, keyof LoginPageState>);
     };
 
-    private handleButtomClick =  () => {
+    handleButtonClick = () => {
 
         const emailError = validationEmail(this.state.email);
 
@@ -52,17 +48,24 @@ export class Login extends React.Component<{}, LoginPageState> {
 
     render() {
         return (
-                <label>
-                    E-mail:
-                    <input className="App_Form" type="text" name="email" onChange={this.handleChange} />
-                    <br />
-                        Senha:
-                    <input className="App_Form" type="password" name="password" onChange={this.handleChange} />
-                    <br />
-                    <button className="App_Button" onClick={this.handleButtomClick}>
-                        Entrar
-                    </button>
-                </label>
+                <h1>
+                    <Row>
+                        <Col xs={12}>
+                            <Welcome/>
+                        </Col>
+                        <Col xs={12}>
+                            <Form title="Email" type="text" name="email" placeHolder="Insira o email" onChangeFunction={this.handleChange} validationFunction={Validate.validationEmail}/>
+                        </Col>
+                    <Row>
+                        <Col xs={12}>
+                        <Form title="Senha" type="password" name="password" placeHolder="Insira a senha" onChangeFunction={this.handleChange} validationFunction={Validate.validationPassword} />
+                        </Col>
+                    </Row>
+                        <Col xs={12}>
+                        <Button title="Entrar" onClickFunction={this.handleButtonClick}/>
+                        </Col>
+                    </Row>
+                </h1>
         );
     }
 }
