@@ -6,6 +6,7 @@ import {Button} from '../Components/Button';
 import { Row, Col } from 'react-flexbox-grid';
 import {Welcome} from './Welcome';
 import {Form} from '../Components/Form';
+import * as Validate from '../GraphQL/Validation';
 
 export interface LoginPageState {
     email: string;
@@ -53,11 +54,11 @@ export class Login extends React.Component<{}, LoginPageState> {
                             <Welcome/>
                         </Col>
                         <Col xs={12}>
-                            <Form title="Email" type="text" name="email" placeHolder="Insira o email" onChangeFunction={this.handleChange} />
+                            <Form title="Email" type="text" name="email" placeHolder="Insira o email" onChangeFunction={this.handleChange} validationFunction={Validate.validationEmail}/>
                         </Col>
                     <Row>
                         <Col xs={12}>
-                        <Form title="Senha" type="password" name="password" placeHolder="Insira a senha" onChangeFunction={this.handleChange} />
+                        <Form title="Senha" type="password" name="password" placeHolder="Insira a senha" onChangeFunction={this.handleChange} validationFunction={Validate.validationPassword} />
                         </Col>
                     </Row>
                         <Col xs={12}>
